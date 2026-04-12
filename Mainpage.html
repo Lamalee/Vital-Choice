@@ -1,18 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Gameplay</title>
-        <link rel="stylesheet" href="style.css">
-        <script src="script.js" defer></script>
-    </head>
-    <body>
-        
-        <div class="character_container">
-            <div class="timer"></div>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gameplay</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <div class="character_container">
+        <div class="timer"></div>
+        <div class="character"></div>
+        <div class="bars">
+            <div class="bar" id="Health"></div>
+            <div class="bar" id="Hunger"></div>
+            <div class="bar" id="Thirst"></div>
+            <div class="bar" id="Cold"></div>
+            <div class="bar" id="Illness"></div>
+            <div class="bar" id="Sanity"></div>
         </div>
-        <div class="question_container"></div>
-        <div class="items_container"></div>
-    </body>
+    </div>
+    <div class="question_container"></div>
+    <div class="items_container">
+        <button class="item_button" id="Food"></button>
+        <button class="item_button" id="Water"></button>
+        <button class="item_button" id="Medicine"></button>
+        <button class="item_button" id="Fire"></button>
+        <button class="item_button" id="Chess"></button>
+        <button class="item_button" id="Radio"></button>
+    </div>
+</body>
+
 </html>
