@@ -128,4 +128,55 @@ CREATE TABLE events (
     CONSTRAINT fk_event_question
     FOREIGN KEY (question_id) REFERENCES questions(question_id)
 );
+ALTER TABLE summary_status
+DROP FOREIGN KEY fk_summary_player;
 
+ALTER TABLE summary_status
+ADD CONSTRAINT fk_summary_player
+FOREIGN KEY (player_id) REFERENCES players(id)
+ON DELETE CASCADE;
+
+ALTER TABLE game_sessions
+DROP FOREIGN KEY fk_sessions_player;
+
+ALTER TABLE game_sessions
+ADD CONSTRAINT fk_sessions_player
+FOREIGN KEY (player_id)
+REFERENCES players(id)
+ON DELETE CASCADE;
+
+ALTER TABLE player_status
+DROP FOREIGN KEY fk_status_session;
+
+ALTER TABLE player_status
+ADD CONSTRAINT fk_status_session
+FOREIGN KEY (session_id)
+REFERENCES game_sessions(session_id)
+ON DELETE CASCADE;
+
+ALTER TABLE history_answers
+DROP FOREIGN KEY fk_history_session;
+
+ALTER TABLE history_answers
+ADD CONSTRAINT fk_history_session
+FOREIGN KEY (session_id)
+REFERENCES game_sessions(session_id)
+ON DELETE CASCADE;
+
+ALTER TABLE session_items
+DROP FOREIGN KEY fk_si_session;
+
+ALTER TABLE session_items
+ADD CONSTRAINT fk_si_session
+FOREIGN KEY (session_id)
+REFERENCES game_sessions(session_id)
+ON DELETE CASCADE;
+
+ALTER TABLE exam_questions
+DROP FOREIGN KEY fk_eq_exam;
+
+ALTER TABLE exam_questions
+ADD CONSTRAINT fk_eq_exam
+FOREIGN KEY (exam_id)
+REFERENCES exams(exam_id)
+ON DELETE CASCADE;
