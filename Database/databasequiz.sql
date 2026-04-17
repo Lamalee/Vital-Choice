@@ -180,3 +180,12 @@ ADD CONSTRAINT fk_eq_exam
 FOREIGN KEY (exam_id)
 REFERENCES exams(exam_id)
 ON DELETE CASCADE;
+--Thay đổi các trường
+ALTER TABLE session_items
+DROP COLUMN quantity;
+
+ALTER TABLE session_items
+CHANGE x spawn_rate INT DEFAULT 0;
+
+ALTER TABLE session_items
+ADD is_available BOOLEAN DEFAULT FALSE;
