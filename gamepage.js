@@ -65,6 +65,7 @@ function Display_bars() {
     if (!check_water) {
         document.getElementById("Water").style.backgroundColor = "red";
     }
+    document.getElementById("Question").innerHTML = "Medicine: " + rd_medicine + "%, Fire: " + rd_fire + "%, Chess: " + rd_chess + "%, Illness: " + rd_illness + "%, Cold: " + rd_cold + "%, Halucination: " + rd_halucination + "%, Radio: " + (rd_radio / 1000.0 * 100.0).toFixed(2) + "%";
 
 
 }
@@ -146,23 +147,23 @@ function startTimer() {
     time_dif = setInterval(Time_running, 1000);
 }
 function randIllness() {
-    let x = Math.floor(Math.random() * 100) <= rd_illness;
+    let x = (Math.floor(Math.random() * 100) + 1 <= rd_illness);
     return x ? 1 : 0;
 }
 function randCold() {
-    let x = Math.floor(Math.random() * 100) <= rd_cold;
+    let x = (Math.floor(Math.random() * 100) + 1<= rd_cold);
     return x ? 1 : 0;
 }
 function randHalucination() {
-    let x = Math.floor(Math.random() * 100) <= rd_halucination;
+    let x = (Math.floor(Math.random() * 100) + 1 <= rd_halucination);
     return x ? 1 : 0;
 }
 function randMedicine() {
-    let x = Math.floor(Math.random() * 100) <= rd_medicine;
+    let x = (Math.floor(Math.random() * 100) + 1 <= rd_medicine);
     return x ? 0 : 1;
 }
 function randFire() {
-    let x = Math.floor(Math.random() * 100) <= rd_fire;
+    let x = (Math.floor(Math.random() * 100) + 1 <= rd_fire);
     return x ? 0 : 1;
 }
 function randRadio() {
@@ -170,11 +171,11 @@ function randRadio() {
     {
         return 0;
     }
-    let x = Math.floor(Math.random() * 1000) <= rd_radio;
+    let x = (Math.floor(Math.random() * 1000) + 1 <= rd_radio);
     return x ? 0 : 1;
 }
 function randChess() {
-    let x = Math.floor(Math.random() * 100) <= rd_chess;
+    let x = (Math.floor(Math.random() * 100) + 1 <= rd_chess);
     return x ? 0 : 1;
 }
 function New_Day() {
@@ -188,6 +189,9 @@ function New_Day() {
     dif_thirst = -1;
     dif_hunger = -1;
     rd_radio += 10;
+    rd_illness += Math.floor(Math.random() * 5);
+    rd_cold += Math.floor(Math.random() * 5);
+    rd_halucination += Math.floor(Math.random() * 5);
     dif_illness = randIllness();
     dif_cold = randCold();
     dif_halucination = randHalucination();
@@ -305,7 +309,6 @@ function Water_chosen() {
 
 function Fire_chosen() {
     if (check_fire) {
-        rd_cold += 4;
         return;
     }
     check_fire = 1;
@@ -320,7 +323,6 @@ function Fire_chosen() {
 
 function Medicine_chosen() {
     if (check_medicine) {
-        rd_illness += 4;
         return;
     }
     check_medicine = 1;
@@ -336,7 +338,6 @@ function Medicine_chosen() {
 
 function Chess_chosen() {
     if (check_chess) {
-        rd_halucination += 4;
         return;
     }
     check_chess = 1;
