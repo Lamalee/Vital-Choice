@@ -28,13 +28,14 @@ let rd_chess;
 let rd_illness;
 let rd_cold;
 let rd_halucination;
+let dayanchor;
 function Display_bars() {
     document.getElementById("Health").style.width = hp / 20 * 100 + "%";
     document.getElementById("Hunger").style.width = hunger / 15 * 100 + "%";
     document.getElementById("Thirst").style.width = thirst / 5 * 100 + "%";
-    document.getElementById("Illness").style.width = illness / 15 * 100 + "%";
-    document.getElementById("Cold").style.width = cold / 20 * 100 + "%";
-    document.getElementById("Sanity").style.width = halucination / 20 * 100 + "%";
+    document.getElementById("Illness").style.width = illness / 10 * 100 + "%";
+    document.getElementById("Cold").style.width = cold / 10 * 100 + "%";
+    document.getElementById("Sanity").style.width = halucination / 10 * 100 + "%";
     if (!check_chess) {
         document.getElementById("Chess").style.backgroundColor = "red";
     }
@@ -167,8 +168,9 @@ function randFire() {
     return x ? 0 : 1;
 }
 function randRadio() {
-    if(day % 10 == 0)
+    if(dayanchor % 10 == 0)
     {
+        dayanchor = 0;
         return 0;
     }
     let x = (Math.floor(Math.random() * 1000) + 1 <= rd_radio);
@@ -180,6 +182,7 @@ function randChess() {
 }
 function New_Day() {
     day++;
+    dayanchor++;
     thirst += dif_thirst;
     hunger += dif_hunger;
     cold += dif_cold;
@@ -189,9 +192,9 @@ function New_Day() {
     dif_thirst = -1;
     dif_hunger = -1;
     rd_radio += 10;
-    rd_illness += Math.floor(Math.random() * 5);
-    rd_cold += Math.floor(Math.random() * 5);
-    rd_halucination += Math.floor(Math.random() * 5);
+    rd_illness += 2 + Math.floor(Math.random() * 5);
+    rd_cold += 2 + Math.floor(Math.random() * 5);
+    rd_halucination += 2 +Math.floor(Math.random() * 5);
     dif_illness = randIllness();
     dif_cold = randCold();
     dif_halucination = randHalucination();
@@ -208,14 +211,14 @@ function New_Day() {
     if (hunger < 0) {
         hunger = 0;
     }
-    if (cold > 20) {
-        cold = 20;
+    if (cold > 10) {
+        cold = 10;
     }
-    if (illness > 15) {
-        illness = 15;
+    if (illness > 10) {
+        illness = 10;
     }
-    if (halucination > 20) {
-        halucination = 20;
+    if (halucination > 10) {
+        halucination = 10;
     }
     if (cold < 0) {
         cold = 0;
@@ -231,12 +234,12 @@ function New_Day() {
         hp -= 1;
     if (hunger == 0)
         hp -= 1;
-    if (cold == 20) {
+    if (cold == 10) {
         hunger -= 1;
         thirst -= 1;
         illness += 2;
     }
-    if (illness == 15) {
+    if (illness == 10) {
         hp -= 1;
         thirst -= 1;
         hunger -= 1;
@@ -259,6 +262,7 @@ function Start() {
     cold = 0;
     halucination = 0;
     day = 0;
+    dayanchor = 0;
     rd_medicine = 0;
     rd_fire = 0;
     rd_radio = 0;
@@ -356,8 +360,9 @@ function Radio_chosen() {
         return;
     }
     check_radio = 1;
+    dayanchor = 0;
     let ch = Questions_show("hard", "MCQ");
-    if (ch && halucination < 20) {
+    if (ch && halucination < 10) {
         dif_radio -= 1;
         dif_cold -= 1;
         dif_illness -= 1;
