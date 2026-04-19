@@ -1,49 +1,79 @@
- <?php
- include 'db.php';
- ?>
- <!DOCTYPE html>
- <html lang="en">
- <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
- </head>
- <body>
-    <h2>Đăng ký</h2>
-    <form method="POST">
-    Username: <input type="text" name="username" required><br>
-    Password: <input type="password" name="password" required><br>
-    Confirm Password: <input type="password" name="confirm_password" required><br>
-    Role: <input type="radio" name="role" value="0" required> Student
-    <input type="radio" name="role" value="1" required> Teacher<br>
-    <button type="submit" name="register" required>Đăng ký</button>
-    </form>
 <?php
 include 'db.php';
+$msg = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $confirm_password = $_POST['confirm_password'];
+    $confirm = $_POST['confirm_password'];
     $role = $_POST['role'];
-    if ($password != $confirm_password) {
-        echo "Mật khẩu không khớp!";
-        exit();
-    }
-    $check = "SELECT * FROM players WHERE username = '$username'";
-    $result = $conn->query($check);
-    if ($result->num_rows > 0) {
-        echo "Tài khoản đã tồn tại!";
-        exit();
-    }
-    $password_hash = password_hash($password, PASSWORD_DEFAULT);
-    $sql = "INSERT INTO players (username, password, role) 
-            VALUES ('$username', '$password_hash', '$role')";
-    if ($conn->query($sql)) {
-        echo "Đăng ký thành công!";
+
+    if ($password != $confirm) {
+        $msg = "Mật khẩu không khớp!";
     } else {
-        echo "Lỗi!";
+        $check = $conn->prepare("SELECT * FROM players WHERE username=?");
+        $check->bind_param("s", $username);
+        $check->execute();
+        $res = $check->get_result();
+        if ($res->num_rows > 0) {
+            $msg = "Tài khoản đã tồn tại!";
+        } else {
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+            $stmt = $conn->prepare("INSERT INTO players (username, password, role) VALUES (?, ?, ?)");
+            $stmt->bind_param("ssi", $username, $hash, $role);
+            if ($stmt->execute()) {
+                $msg = "Đăng ký thành công!";
+            } else {
+                $msg = "Lỗi hệ thống!";
+            }
+        }
     }
 }
 ?>
- </body>
- </html>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Register</title>
+<link rel="stylesheet" href="register.css">
+</head>
+
+<body>
+
+<form method="POST">
+    <h2>Register</h2>
+
+    <input type="text" name="username" placeholder="Username" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <input type="password" name="confirm_password" placeholder="Confirm" required>
+<div class="role">
+    <label>
+        <input type="radio" name="role" value="0" required> Student
+    </label>
+    <label>
+        <input type="radio" name="role" value="1"> Teacher
+    </label>
+</div>
+    <button type="submit">Đăng ký</button>
+</form>
+<?php if ($msg != ""): ?>
+<div class="popup" id="popup">
+    <div class="box">
+        <h3><?php echo $msg; ?></h3>
+        <button onclick="closePopup()">
+            OK
+        </button>
+    </div>
+</div>
+<?php endif; ?>
+<script>
+function closePopup(){
+    document.getElementById("popup").style.display = "none";
+    let msg = "<?php echo $msg; ?>";
+    if (msg.includes("thành công")) {
+        window.location.href = "login.php";
+    }
+}
+</script>
+
+</body>
+</html>

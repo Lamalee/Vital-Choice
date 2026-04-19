@@ -1,53 +1,88 @@
 <?php
 include 'db.php';
+session_start();
+$error = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = trim($_POST['username']);
+    $password = $_POST['password'];
+    $role = $_POST['role'];
+    if ($role === "") {
+        $error = "Vui lòng chọn vai trò!";
+    } else {
+        $stmt = $conn->prepare("SELECT * FROM players WHERE username=? AND role=?");
+        $stmt->bind_param("si", $username, $role);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            if (password_verify($password, $row['password'])) {
+                $_SESSION['username'] = $row['username'];
+                $_SESSION['role'] = $row['role'];
+                if ($role == 2) {
+                    header("Location: admin.php");
+                } elseif ($role == 1) {
+                    header("Location: teacher.php");
+                } else {
+                    header("Location: mainpage2.php");
+                }
+                exit();
+            } else {
+                $error = "Sai tài khoản hoặc mật khẩu!";
+            }
+        } else {
+            $error = "Tài khoản không tồn tại hoặc sai vai trò!";
+        }
+    }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="loginn.css">
 </head>
+
 <body>
+
+<div class="login-box">
+
     <h2>Login</h2>
+
     <form method="POST">
+
         <p>
-            <label>username</label1><br>
-            <input type="text" name="username" required>
-            </p>
-            <p>
-                <label>Password</label><br>
-                <input type="password" name="password" required>
-            </p>
+            
+            <input type="text" name="username" placeholder="Username" required>
+        </p>
+
         <p>
-            <label>Chọn vai trò:</label><br>
+          
+            <input type="password" name="password" placeholder="Password" required>
+        </p>
+
+        <p>
             <select name="role" required>
-                <option >-- Chọn vai trò --</option>
+                <option value="" disabled selected>-- Chọn vai trò --</option>
                 <option value="0">Student</option>
                 <option value="1">Teacher</option>
                 <option value="2">Admin</option>
             </select>
         </p>
-        <button type="submit">Login</button>
+        <div class="button-container">
+            <button type="submit">Login</button>
+        </div>
     </form>
-    <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $role = $_POST['role'];
-    $sql = "SELECT * FROM players WHERE username='$username' AND role='$role'";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        if (password_verify($password, $row['password'])) {
-            echo "Đăng nhập thành công!";
-        } else {
-            echo "Sai tài khoản hoặc mật khẩu!";
-        }
-    } else {
-        echo "Tài khoản không tồn tại!";
-    }
-}
-    ?>
+
+    <?php if (!empty($error)): ?>
+        <p style="color:red; text-align:center; margin-top:10px;">
+            <?php echo $error; ?>
+        </p>
+    <?php endif; ?>
+
+</div>
+
 </body>
 </html>
