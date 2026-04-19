@@ -32,8 +32,8 @@ if (!isset($_SESSION['username'])) {
       <section id="home">
         <h2 class="welcome">Welcome, <?php echo $_SESSION['username']; ?>!</h2>
         <h2 class="welcome">Your <u>CHOICE</u> for your <u>LIFE</u>!!!</h2>
-        <a href="game.php">
-          <button>Play</button>
+        <a href="gamepage.html">
+          <button >Play</button>
         </a>
       </section>
       <section id="aboutus">
