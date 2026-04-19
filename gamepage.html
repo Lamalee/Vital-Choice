@@ -12,7 +12,7 @@
 <body>
 
     <div class="character_container">
-        <div class="timer"></div>
+        <div class="timer" id="Timer"></div>
         <div class="character"></div>
         <div class="bars">
             <div class="bar" id="Health"></div>
@@ -23,14 +23,22 @@
             <div class="bar" id="Sanity"></div>
         </div>
     </div>
-    <div class="question_container"></div>
+    <div class="question_container">
+        <div class="question" id="Question">t</div>
+        <div class="answer_container">
+            <button class="answer_button" id="Answer1">A</button>
+            <button class="answer_button" id="Answer2">B</button>
+            <button class="answer_button" id="Answer3">C</button>
+            <button class="answer_button" id="Answer4">D</button>
+        </div>
+    </div>
     <div class="items_container">
-        <button class="item_button" id="Food"></button>
-        <button class="item_button" id="Water"></button>
-        <button class="item_button" id="Medicine"></button>
-        <button class="item_button" id="Fire"></button>
-        <button class="item_button" id="Chess"></button>
-        <button class="item_button" id="Radio"></button>
+        <button class="item_button" id="Food" onclick = "Food_chosen()"></button>
+        <button class="item_button" id="Water" onclick = "Water_chosen()"></button>
+        <button class="item_button" id="Medicine" onclick = "Medicine_chosen()"></button>
+        <button class="item_button" id="Fire" onclick = "Fire_chosen()"></button>
+        <button class="item_button" id="Chess" onclick = "Chess_chosen()"></button>
+        <button class="item_button" id="Radio" onclick = "Radio_chosen()"></button>
     </div>
 </body>
 
