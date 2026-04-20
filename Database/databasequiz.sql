@@ -7,6 +7,7 @@ CREATE TABLE players (
     password VARCHAR(255) NOT NULL,
     role TINYINT DEFAULT 0, -- 0=student,1=teacher,2=admin
     PRIMARY KEY (id)
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 );
 CREATE TABLE summary_status (
     player_id INT,
@@ -189,3 +190,46 @@ CHANGE x spawn_rate INT DEFAULT 0;
 
 ALTER TABLE session_items
 ADD is_available BOOLEAN DEFAULT FALSE;
+ALTER TABLE answers
+DROP FOREIGN KEY fk_answers_question;
+
+ALTER TABLE answers
+ADD CONSTRAINT fk_answers_question
+FOREIGN KEY (question_id)
+REFERENCES questions(question_id)
+ON DELETE CASCADE;
+ALTER TABLE answers
+DROP FOREIGN KEY fk_answers_question;
+
+ALTER TABLE answers
+ADD CONSTRAINT fk_answers_question
+FOREIGN KEY (question_id)
+REFERENCES questions(question_id)
+ON DELETE CASCADE;
+
+ALTER TABLE exam_questions
+DROP FOREIGN KEY fk_eq_question;
+
+ALTER TABLE exam_questions
+ADD CONSTRAINT fk_eq_question
+FOREIGN KEY (question_id)
+REFERENCES questions(question_id)
+ON DELETE CASCADE;
+
+ALTER TABLE events
+DROP FOREIGN KEY fk_event_question;
+
+ALTER TABLE events
+ADD CONSTRAINT fk_event_question
+FOREIGN KEY (question_id)
+REFERENCES questions(question_id)
+ON DELETE CASCADE;
+
+ALTER TABLE history_answers
+DROP FOREIGN KEY fk_history_question;
+
+ALTER TABLE history_answers
+ADD CONSTRAINT fk_history_question
+FOREIGN KEY (question_id)
+REFERENCES questions(question_id)
+ON DELETE CASCADE;
