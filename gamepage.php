@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +11,6 @@
 </head>
 
 <body>
-
     <div class="character_container">
         <div class="timer" id="Timer"></div>
         <div class="character"></div>
@@ -33,13 +33,21 @@
         </div>
     </div>
     <div class="items_container">
-        <button class="item_button" id="Food" onclick = "Food_chosen()"></button>
-        <button class="item_button" id="Water" onclick = "Water_chosen()"></button>
-        <button class="item_button" id="Medicine" onclick = "Medicine_chosen()"></button>
-        <button class="item_button" id="Fire" onclick = "Fire_chosen()"></button>
-        <button class="item_button" id="Chess" onclick = "Chess_chosen()"></button>
-        <button class="item_button" id="Radio" onclick = "Radio_chosen()"></button>
+        <button class="item_button" id="Food" onclick="Food_chosen()"></button>
+        <button class="item_button" id="Water" onclick="Water_chosen()"></button>
+        <button class="item_button" id="Medicine" onclick="Medicine_chosen()"></button>
+        <button class="item_button" id="Fire" onclick="Fire_chosen()"></button>
+        <button class="item_button" id="Chess" onclick="Chess_chosen()"></button>
+        <button class="item_button" id="Radio" onclick="Radio_chosen()"></button>
     </div>
+    
+    <?php
+    $t = 20;
+    ?>
+
+    <script>
+        const TIME_LIMIT = <?php echo json_encode($t); ?>;
+    </script>
 </body>
 
 </html>

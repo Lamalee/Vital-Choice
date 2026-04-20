@@ -142,7 +142,7 @@ function Time_running() {
     }
 }
 function startTimer() {
-    time = 5;
+    time = TIME_LIMIT;
     clearInterval(time_dif);
     document.getElementById("Timer").innerHTML = "Day " + day + ": " + time;
     time_dif = setInterval(Time_running, 1000);
@@ -251,7 +251,7 @@ function New_Day() {
         Win();
     }
     Display_bars();
-    startTimer();
+    
 }
 
 function Start() {
@@ -265,7 +265,7 @@ function Start() {
     dayanchor = 0;
     rd_medicine = 0;
     rd_fire = 0;
-    rd_radio = 0;
+    rd_radio = 5;
     rd_chess = 0;
     rd_illness = 0;
     rd_cold = 0;
@@ -273,6 +273,7 @@ function Start() {
     if (!hardness) { radio = 3; }
     else { radio = 4; }
     New_Day();
+    startTimer();
 }
 
 Start();
@@ -302,7 +303,7 @@ function Water_chosen() {
     }
     check_water = 1;
     let ch = Questions_show("easy", "MCQ");
-    if (ch && halucination < 20) {
+    if (ch && halucination < 15) {
         if (thirst == 0)
             dif_thirst += 2;
         else dif_thirst++;
@@ -362,7 +363,7 @@ function Radio_chosen() {
     check_radio = 1;
     dayanchor = 0;
     let ch = Questions_show("hard", "MCQ");
-    if (ch && halucination < 10) {
+    if (ch && halucination < 15) {
         dif_radio -= 1;
         dif_cold -= 1;
         dif_illness -= 1;
