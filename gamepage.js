@@ -29,6 +29,11 @@ let rd_illness;
 let rd_cold;
 let rd_halucination;
 let dayanchor;
+let question_content;
+let A;
+let B;
+let C;
+let D;
 function Display_bars() {
     document.getElementById("Health").style.width = hp / 20 * 100 + "%";
     document.getElementById("Hunger").style.width = hunger / 15 * 100 + "%";
@@ -66,7 +71,7 @@ function Display_bars() {
     if (!check_water) {
         document.getElementById("Water").style.backgroundColor = "red";
     }
-    document.getElementById("Question").innerHTML = "Medicine: " + rd_medicine + "%, Fire: " + rd_fire + "%, Chess: " + rd_chess + "%, Illness: " + rd_illness + "%, Cold: " + rd_cold + "%, Halucination: " + rd_halucination + "%, Radio: " + (rd_radio / 1000.0 * 100.0).toFixed(2) + "%";
+    
 
 
 }
@@ -81,7 +86,16 @@ function Lose() {
     ResultPage("Lose");
 }
 function Questions_show(dif, type) {
-    return false;
+    question_content = QUESTION;
+    A = ANSWER_A;
+    B = ANSWER_B;
+    C = ANSWER_C;
+    D = ANSWER_D;
+    document.getElementById("Question").innerHTML = question_content;
+    document.getElementById("Answer1").innerHTML = A;
+    document.getElementById("Answer2").innerHTML = B;
+    document.getElementById("Answer3").innerHTML = C;
+    document.getElementById("Answer4").innerHTML = D;
 }
 function EndofDay() {
     // Làm mờ nền sau
@@ -287,7 +301,7 @@ function Food_chosen() {
         return;
     }
     check_food = 1;
-    let ch = Questions_show("easy", "MCQ");
+    let ch = Questions_show(0, 0);
     if (ch && halucination < 20) {
         if (hunger == 0)
             dif_hunger += 2;
@@ -302,7 +316,7 @@ function Water_chosen() {
         return;
     }
     check_water = 1;
-    let ch = Questions_show("easy", "MCQ");
+    let ch = Questions_show(0, 0);
     if (ch && halucination < 15) {
         if (thirst == 0)
             dif_thirst += 2;
@@ -317,7 +331,7 @@ function Fire_chosen() {
         return;
     }
     check_fire = 1;
-    let ch = Questions_show("medium", "MCQ");
+    let ch = Questions_show(1, 0);
     if (ch) {
         dif_cold -= 2;
         Increase_rd();
@@ -331,7 +345,7 @@ function Medicine_chosen() {
         return;
     }
     check_medicine = 1;
-    let ch = Questions_show("medium", "MCQ");
+    let ch = Questions_show(1, 0);
     if (ch) {
         dif_illness -= 5;
         Increase_rd();
@@ -346,7 +360,7 @@ function Chess_chosen() {
         return;
     }
     check_chess = 1;
-    let ch = Questions_show("medium", "MCQ");
+    let ch = Questions_show(1, 0);
     if (ch) {
         dif_halucination -= 2;
         Increase_rd();
@@ -362,7 +376,7 @@ function Radio_chosen() {
     }
     check_radio = 1;
     dayanchor = 0;
-    let ch = Questions_show("hard", "MCQ");
+    let ch = Questions_show(2, 0);
     if (ch && halucination < 15) {
         dif_radio -= 1;
         dif_cold -= 1;

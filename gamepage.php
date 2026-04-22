@@ -1,4 +1,35 @@
+<?php
+include 'db.php';
+$t = 20;
+$q_query = $conn->prepare("SELECT q.question_id, q.content, q.type,
+       a.answer_id, a.choice, a.content AS answer_content
+FROM questions q
+JOIN answers a ON q.question_id = a.question_id
+WHERE q.question_id = (
+    SELECT question_id 
+    FROM questions
+    WHERE is_active = 1
+    ORDER BY RAND()
+    LIMIT 1
+)");
+$q_query -> execute();
+$q_result = $q_query->get_result();
+$q_row = $q_result -> fetch_assoc();
+$q = $q_row['question_id'];
+$ansa = $q_row['answer_content'];
+$ansb = "Answer B";
+$ansc = "Answer C";
+$ansd = "Answer D";
+?>
 
+<script>
+    let TIME_LIMIT = <?php echo json_encode($t); ?>;
+    let QUESTION = <?php echo json_encode($q); ?>;
+    let ANSWER_A = <?php echo json_encode($ansa); ?>;
+    let ANSWER_B = <?php echo json_encode($ansb); ?>;
+    let ANSWER_C = <?php echo json_encode($ansc); ?>;
+    let ANSWER_D = <?php echo json_encode($ansd); ?>;
+</script>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +55,7 @@
         </div>
     </div>
     <div class="question_container">
-        <div class="question" id="Question">t</div>
+        <div class="question" id="Question"></div>
         <div class="answer_container">
             <button class="answer_button" id="Answer1">A</button>
             <button class="answer_button" id="Answer2">B</button>
@@ -40,14 +71,8 @@
         <button class="item_button" id="Chess" onclick="Chess_chosen()"></button>
         <button class="item_button" id="Radio" onclick="Radio_chosen()"></button>
     </div>
-    
-    <?php
-    $t = 20;
-    ?>
 
-    <script>
-        const TIME_LIMIT = <?php echo json_encode($t); ?>;
-    </script>
+
 </body>
 
 </html>
