@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "vital_choice");
+$conn = mysqli_connect("localhost", "root", "", "quiz_game");
 if (!$conn) die("Lỗi kết nối!");
 $sql = "SELECT * FROM history_answers";
 $result = mysqli_query($conn, $sql);
