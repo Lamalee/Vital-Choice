@@ -58,6 +58,7 @@ button {
   background-color: #e3a805db;
   color: #0d1b2a;
   padding: 14px 36px;
+  margin-bottom: 10px;
   font-size: 20px;
   border: 3px solid #0d1b2a;
   border-radius: 0;
@@ -126,4 +127,39 @@ img {
   font-size: 24px;
   color: #e1bd0a;
   margin-bottom: 10px;
+}
+.divPlay {
+  font-size: 30px;
+  color: #e3a805db;
+  text-shadow:
+    -2px -2px 0 #fff,
+    2px -2px 0 #fff,
+    -2px 2px 0 #fff,
+    2px 2px 0 #fff;
+}
+select {
+  padding: 10px;
+  padding-top: 10px;
+  border-radius: 10px;
+  border: 3px solid #e4b21ddf;
+  background-color: #ffffff;
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+select:hover {
+  border-color: #e9a950;
+  background-color: #feeaaf;
+}
+option {
+  background-color: #ffffff;
+  color: black;
+}
+
+option:checked {
+  background-color: #ef6a17;
+  color: black;
 }
