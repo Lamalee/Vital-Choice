@@ -152,7 +152,7 @@ body {
   gap: 20px;  
 }
 .items_container .item_button {
-  width: 100%;
+  width: 80%;
   height: 100%;
   border: 2px solid black;
   border-radius: 10px;
@@ -162,6 +162,7 @@ body {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   padding: 0;
+  justify-self: center;
 }
 
 .items_container .item_button.active {
