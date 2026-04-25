@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CobraQ - Dark Survival Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Molle:ital@1&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet" />
+    
+    <style>
+        :root {
+            --bg-black: #000000;
+            --card-gray: #1a1a1a;
+            --primary-gold: #DDB53E;
+            --accent-orange: #C27122;
+            --border-color: #333333;
+        }
+
+        body { 
+            font-family: 'Pixelify Sans', sans-serif; 
+            background: var(--bg-black); 
+            margin: 0; 
+            padding: 20px; 
+            color: var(--primary-gold); 
+            font-size: 20px; /* Tăng kích thước chữ mặc định */
+        }
+
+        .gold-text-outline {
+            color: var(--primary-gold);
+            text-shadow:
+                -2px -2px 0 #000,
+                 2px -2px 0 #000,
+                -2px  2px 0 #000,
+                 2px  2px 0 #000,
+                 0px  2px 0 #000,
+                 2px  0px 0 #000,
+                -2px  0px 0 #000,
+                 0px -2px 0 #000;
+        }
+
+        .home-btn {
+            position: fixed; top: 20px; left: 20px; 
+            background: var(--card-gray); 
+            border: 2px solid var(--accent-orange);
+            padding: 12px 24px; border-radius: 8px; 
+            text-decoration: none;
+            color: var(--primary-gold); 
+            font-weight: 700; 
+            font-size: 22px; /* Tăng font nút Home */
+            box-shadow: 0 4px 10px rgba(194, 113, 34, 0.3);
+            z-index: 1000;
+        }
+
+        .container { max-width: 1100px; margin: 80px auto 20px auto; }
+        
+        .card { 
+            background: var(--card-gray); 
+            padding: 30px; 
+            border-radius: 15px; 
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .title-line { display: flex; align-items: center; gap: 12px; margin-bottom: 25px; }
+        .title-line span { width: 8px; height: 32px; background: var(--accent-orange); border-radius: 3px; }
+        h2 { font-size: 32px; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
+
+        .header-flex { display: flex; gap: 35px; align-items: center; }
+        .avatar-box { 
+            width: 120px; height: 120px; 
+            background: #333; 
+            border-radius: 12px; 
+            display: flex; align-items: center; justify-content: center; 
+            font-size: 60px; border: 3px solid var(--primary-gold);
+        }
+        .user-meta p { margin: 10px 0; font-size: 24px; } /* Tăng font thông tin cá nhân */
+
+        .game-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+
+        .stat-list { list-style: none; padding: 0; margin: 0; }
+        .stat-item { 
+            display: flex; justify-content: space-between; 
+            padding: 15px 0; border-bottom: 1px solid #333;
+            font-size: 24px; /* Tăng font các dòng chỉ số */
+        }
+        .stat-item:last-child { border: none; }
+        .stat-value { color: #ffffff; }
+
+        .perf-item { margin-bottom: 25px; }
+        .perf-label { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 22px; }
+        .p-bar { background: #000; height: 16px; border-radius: 8px; border: 1px solid #444; overflow: hidden; }
+        .p-fill { height: 100%; width: 0%; transition: width 0.5s; }
+
+        .history-header { display: flex; justify-content: space-between; align-items: center; }
+        .toggle-btn { 
+            background: var(--accent-orange); 
+            color: white; border: none; 
+            padding: 10px 20px; border-radius: 5px; 
+            cursor: pointer; font-family: 'Pixelify Sans';
+            font-size: 20px;
+        }
+        
+        #h-content { text-align: center; color: #666; padding: 40px; font-size: 24px; }
+    </style>
+</head>
+<body>
+
+<a href="#" class="home-btn">🏠 HOME</a>
+
+<div class="container">
+
+    <div class="card">
+        <div class="title-line"><span></span><h2>Thông tin cá nhân</h2></div>
+        <div class="header-flex">
+            <div class="avatar-box">👾</div>
+            <div class="user-meta">
+                <p><b>Username:</b> <span class="gold-text-outline" style="font-size: 32px;">Admin</span></p>
+                <p><b>Mã SV:</b> SV4751 - CNTT47C</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="game-grid">
+        <div class="card">
+            <div class="title-line"><span></span><h2>Chỉ số nhân vật</h2></div>
+            <div class="stat-list">
+                <div class="stat-item"><span>❤️ Máu (HP)</span><span class="stat-value">20/20</span></div>
+                <div class="stat-item"><span>🍖 Độ đói</span><span class="stat-value">15/15</span></div>
+                <div class="stat-item"><span>💧 Độ khát</span><span class="stat-value">5/5</span></div>
+                <div class="stat-item"><span>⏱ 1 Ngày</span><span class="stat-value">60s</span></div>
+                <div class="stat-item"><span>🔥 Chế độ</span><span class="gold-text-outline" style="font-size: 24px;">EASY</span></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="title-line"><span></span><h2>Thống kê</h2></div>
+            <div class="stat-list">
+                <div class="stat-item"><span>🌐 Sử dụng Web</span><span class="stat-value">00:00:00</span></div>
+                <div class="stat-item"><span>🔥 Streak</span><span class="stat-value">0 ngày</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="title-line"><span></span><h2>Hiệu suất trả lời</h2></div>
+        <div class="perf-item">
+            <div class="perf-label"><span>ĐÚNG</span><span>0%</span></div>
+            <div class="p-bar"><div class="p-fill" style="background: #2ecc71;"></div></div>
+        </div>
+        <div class="perf-item">
+            <div class="perf-label"><span>SAI</span><span>0%</span></div>
+            <div class="p-bar"><div class="p-fill" style="background: #ff4757;"></div></div>
+        </div>
+        <div class="perf-item">
+            <div class="perf-label"><span>BỎ QUA</span><span>0%</span></div>
+            <div class="p-bar"><div class="p-fill" style="background: #ffa502;"></div></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="history-header">
+            <div class="title-line" style="margin:0"><span></span><h2>Lịch sử gần nhất</h2></div>
+            <button class="toggle-btn" onclick="toggleH()">ẨN / HIỆN</button>
+        </div>
+        <div id="h-content">Chưa có dữ liệu sinh tồn.</div>
+    </div>
+
+</div>
+
+<script>
+    function toggleH() {
+        var x = document.getElementById("h-content");
+        x.style.display = (x.style.display === "none") ? "block" : "none";
+    }
+</script>
+
+</body>
+</html>                                    
