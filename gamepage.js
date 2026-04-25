@@ -29,56 +29,6 @@ let rd_illness;
 let rd_cold;
 let rd_halucination;
 let dayanchor;
-<<<<<<< Updated upstream
-let question_content;
-let A;
-let B;
-let C;
-let D;
-function Display_bars() {
-    document.getElementById("Health").style.width = hp / 20 * 100 + "%";
-    document.getElementById("Hunger").style.width = hunger / 15 * 100 + "%";
-    document.getElementById("Thirst").style.width = thirst / 5 * 100 + "%";
-    document.getElementById("Illness").style.width = illness / 10 * 100 + "%";
-    document.getElementById("Cold").style.width = cold / 10 * 100 + "%";
-    document.getElementById("Sanity").style.width = halucination / 10 * 100 + "%";
-    if (!check_chess) {
-        document.getElementById("Chess").style.backgroundColor = "red";
-    }
-    else{
-        document.getElementById("Chess").style.backgroundColor = "gray";
-    }
-    if (!check_fire) {
-        document.getElementById("Fire").style.backgroundColor = "red";
-    }
-    else{
-        document.getElementById("Fire").style.backgroundColor = "gray";
-    }
-    if (!check_medicine) {
-        document.getElementById("Medicine").style.backgroundColor = "red";
-    }
-    else {
-        document.getElementById("Medicine").style.backgroundColor = "gray";
-    }
-    if (!check_radio) {
-        document.getElementById("Radio").style.backgroundColor = "red";
-    }
-    else{
-        document.getElementById("Radio").style.backgroundColor = "gray";
-    }
-    if (!check_food) {
-        document.getElementById("Food").style.backgroundColor = "red";
-    }
-    if (!check_water) {
-        document.getElementById("Water").style.backgroundColor = "red";
-    }
-    
-
-
-}
-function ResultPage(result) {
-
-=======
 let isanswering = false;
 function Display_bars() {
   document.getElementById("Health").style.width = (hp / 20) * 100 + "%";
@@ -89,60 +39,57 @@ function Display_bars() {
   document.getElementById("Sanity").style.width =
     (halucination / 10) * 100 + "%";
   if (!check_chess) {
-    document.getElementById("Chess").style.backgroundImage = "url('image/Chess.png')";
+    document.getElementById("Chess").style.backgroundImage =
+      "url('image/Chess.png')";
   } else {
-    document.getElementById("Chess").style.backgroundImage = "url('image/Chess_Used.jpg')";
+    document.getElementById("Chess").style.backgroundImage =
+      "url('image/Chess_Used.jpg')";
   }
   if (!check_fire) {
-    document.getElementById("Fire").style.backgroundImage = "url('image/Fire.png')";
+    document.getElementById("Fire").style.backgroundImage =
+      "url('image/Fire.png')";
   } else {
-    document.getElementById("Fire").style.backgroundImage = "url('image/Fire_Used.jpg')";
+    document.getElementById("Fire").style.backgroundImage =
+      "url('image/Fire_Used.jpg')";
   }
   if (!check_medicine) {
-    document.getElementById("Medicine").style.backgroundImage = "url('image/Medicine.png')";
+    document.getElementById("Medicine").style.backgroundImage =
+      "url('image/Medicine.png')";
   } else {
-    document.getElementById("Medicine").style.backgroundImage = "url('image/Medicine_Used.jpg')";
+    document.getElementById("Medicine").style.backgroundImage =
+      "url('image/Medicine_Used.jpg')";
   }
   if (!check_radio) {
-    document.getElementById("Radio").style.backgroundImage = "url('image/Radio.png')";
+    document.getElementById("Radio").style.backgroundImage =
+      "url('image/Radio.png')";
   } else {
-    document.getElementById("Radio").style.backgroundImage = "url('image/Radio_Used.jpg')";
+    document.getElementById("Radio").style.backgroundImage =
+      "url('image/Radio_Used.jpg')";
   }
   if (!check_food) {
-    document.getElementById("Food").style.backgroundImage = "url('image/Food.png')";
+    document.getElementById("Food").style.backgroundImage =
+      "url('image/Food.png')";
   } else {
-    document.getElementById("Food").style.backgroundImage = "url('image/Food_Used.jpg')";
+    document.getElementById("Food").style.backgroundImage =
+      "url('image/Food_Used.jpg')";
   }
   if (!check_water) {
-    document.getElementById("Water").style.backgroundImage = "url('image/Water.png')";
+    document.getElementById("Water").style.backgroundImage =
+      "url('image/Water.png')";
   } else {
-    document.getElementById("Water").style.backgroundImage = "url('image/Water_Used.jpg')";
+    document.getElementById("Water").style.backgroundImage =
+      "url('image/Water_Used.jpg')";
   }
->>>>>>> Stashed changes
 }
 function ResultPage(result) {}
 function Win() {
   //Cơ chế xếp hạng sẽ được thêm sau
 }
-function Lose() {
-}
-<<<<<<< Updated upstream
-function Questions_show(dif, type) {
-    question_content = QUESTION;
-    A = ANSWER_A;
-    B = ANSWER_B;
-    C = ANSWER_C;
-    D = ANSWER_D;
-    document.getElementById("Question").innerHTML = question_content;
-    document.getElementById("Answer1").innerHTML = A;
-    document.getElementById("Answer2").innerHTML = B;
-    document.getElementById("Answer3").innerHTML = C;
-    document.getElementById("Answer4").innerHTML = D;
-=======
+function Lose() {}
 function renderQuestion(data) {
   return new Promise((resolve) => {
     let t = data.question;
-    t = t.replace(/"/g,"");
+    t = t.replace(/"/g, "");
     document.getElementById("Question").textContent = t;
 
     let btns = [
@@ -155,12 +102,12 @@ function renderQuestion(data) {
     for (let i = 0; i < 4; i++) {
       btns[i].style.display = "inline-block";
       let s = data.answers[i].content;
-      s = s.replace(/"/g,"");
+      s = s.replace(/"/g, "");
       s = s.slice(1);
-      if(i == 0) s = "A" + s;
-      else if(i == 1) s = "B" + s;
-      else if(i == 2) s = "C" + s;
-      else if(i == 3) s = "D" + s;
+      if (i == 0) s = "A" + s;
+      else if (i == 1) s = "B" + s;
+      else if (i == 2) s = "C" + s;
+      else if (i == 3) s = "D" + s;
       btns[i].innerHTML = s;
       btns[i].disabled = false;
       btns[i].style.backgroundColor = "rgb(252, 250, 250)";
@@ -191,7 +138,6 @@ function Questions_show(tag, type) {
     .finally(() => {
       isAnswering = false;
     });
->>>>>>> Stashed changes
 }
 function EndofDay() {
   // Clear the question and answers immediately
@@ -208,7 +154,7 @@ function EndofDay() {
     btn.style.backgroundColor = "rgb(252, 250, 250)";
     isanswering = false;
   }
-  
+
   // Làm mờ nền sau
   const overlay = document.createElement("div");
   overlay.style.position = "fixed";
@@ -257,7 +203,7 @@ function EndofDay() {
   overlay.appendChild(endofday_box);
 
   document.body.appendChild(overlay);
-} 
+}
 function Time_running() {
   time--;
   document.getElementById("Timer").innerHTML = "Day " + day + ": " + time;
@@ -273,9 +219,9 @@ function startTimer() {
   time_dif = setInterval(Time_running, 1000);
 }
 function SkipDay() {
-    time = 0;
-    clearInterval(time_dif);
-    EndofDay();
+  time = 0;
+  clearInterval(time_dif);
+  EndofDay();
 }
 function randIllness() {
   let x = Math.floor(Math.random() * 100) + 1 <= rd_illness;
@@ -411,103 +357,6 @@ function Increase_rd() {
   rd_medicine += 5;
   rd_chess += 5;
 }
-<<<<<<< Updated upstream
-function Food_chosen() {
-    if (check_food) {
-        return;
-    }
-    check_food = 1;
-    let ch = Questions_show(0, 0);
-    if (ch && halucination < 20) {
-        if (hunger == 0)
-            dif_hunger += 2;
-        else dif_hunger++;
-        Increase_rd();
-    }
-    document.getElementById("Food").style.backgroundColor = "gray";
-}
-
-function Water_chosen() {
-    if (check_water) {
-        return;
-    }
-    check_water = 1;
-    let ch = Questions_show(0, 0);
-    if (ch && halucination < 15) {
-        if (thirst == 0)
-            dif_thirst += 2;
-        else dif_thirst++;
-        Increase_rd();
-    }
-    document.getElementById("Water").style.backgroundColor = "gray";
-}
-
-function Fire_chosen() {
-    if (check_fire) {
-        return;
-    }
-    check_fire = 1;
-    let ch = Questions_show(1, 0);
-    if (ch) {
-        dif_cold -= 2;
-        Increase_rd();
-    }
-    else rd_cold += 4;
-    document.getElementById("Fire").style.backgroundColor = "gray";
-}
-
-function Medicine_chosen() {
-    if (check_medicine) {
-        return;
-    }
-    check_medicine = 1;
-    let ch = Questions_show(1, 0);
-    if (ch) {
-        dif_illness -= 5;
-        Increase_rd();
-    }
-    else rd_illness += 4;
-    document.getElementById("Medicine").style.backgroundColor = "gray";
-
-}
-
-function Chess_chosen() {
-    if (check_chess) {
-        return;
-    }
-    check_chess = 1;
-    let ch = Questions_show(1, 0);
-    if (ch) {
-        dif_halucination -= 2;
-        Increase_rd();
-    }
-    else rd_halucination += 4;
-    document.getElementById("Chess").style.backgroundColor = "gray";
-
-}
-
-function Radio_chosen() {
-    if (check_radio) {
-        return;
-    }
-    check_radio = 1;
-    dayanchor = 0;
-    let ch = Questions_show(2, 0);
-    if (ch && halucination < 15) {
-        dif_radio -= 1;
-        dif_cold -= 1;
-        dif_illness -= 1;
-        dif_halucination -= 1;
-        dif_hunger += 2;
-        dif_thirst += 2;
-        rd_radio = 5;
-        rd_fire = 0;
-        rd_medicine = 0;
-        rd_chess = 0;
-    }
-    document.getElementById("Radio").style.backgroundColor = "gray";
-
-=======
 async function Food_chosen() {
   if (check_food || isanswering) {
     return;
@@ -524,7 +373,6 @@ async function Food_chosen() {
     else dif_hunger++;
     Increase_rd();
   }
-  
 }
 
 async function Water_chosen() {
@@ -543,7 +391,6 @@ async function Water_chosen() {
     else dif_thirst++;
     Increase_rd();
   }
-  
 }
 
 async function Fire_chosen() {
@@ -561,7 +408,6 @@ async function Fire_chosen() {
     dif_cold -= 2;
     Increase_rd();
   } else rd_cold += 4;
-  
 }
 
 async function Medicine_chosen() {
@@ -579,7 +425,6 @@ async function Medicine_chosen() {
     dif_illness -= 5;
     Increase_rd();
   } else rd_illness += 4;
-  
 }
 
 async function Chess_chosen() {
@@ -597,7 +442,6 @@ async function Chess_chosen() {
     dif_halucination -= 2;
     Increase_rd();
   } else rd_halucination += 4;
-  
 }
 
 async function Radio_chosen() {
@@ -624,6 +468,4 @@ async function Radio_chosen() {
     rd_medicine = 0;
     rd_chess = 0;
   }
-  
->>>>>>> Stashed changes
 }

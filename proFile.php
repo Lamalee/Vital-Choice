@@ -157,11 +157,12 @@ h2 {
 
     <div class="card">
         <div class="title-line"><span></span><h2>Chỉ số nhân vật</h2></div>
-        <div class="stat-item"><span>❤️ HP</span><span>0/20</span></div>
-        <div class="stat-item"><span>🍖 Đói</span><span>0/15</span></div>
-        <div class="stat-item"><span>💧 Khát</span><span>0/5</span></div>
-        <div class="stat-item"><span>🔥 Mode</span><span>EASY</span></div>
+        <div class="stat-item"><span>❤️ HP</span><span>20</span></div>
+        <div class="stat-item"><span>🍖 Đói</span><span>15</span></div>
+        <div class="stat-item"><span>💧 Khát</span><span>5</span></div>
+        <div class="stat-item"><span>🔥 Mode</span>
     </div>
+</div>
 
     <div class="card">
         <div class="title-line"><span></span><h2>Thống kê</h2></div>

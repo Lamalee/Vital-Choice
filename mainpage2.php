@@ -23,6 +23,7 @@ if (!isset($_SESSION['username'])) {
       <h1>Vital Choice</h1>
       <nav>
         <ul>
+          <li><a href="#vitalwiki">Vital WiKi</a></li>
           <li><a href="#aboutus">About Us</a></li>
           <li><a href="logout.php">Logout</a></li>
         </ul>
@@ -32,9 +33,15 @@ if (!isset($_SESSION['username'])) {
       <section id="home">
         <h2 class="welcome">Welcome, <?php echo $_SESSION['username']; ?>!</h2>
         <h2 class="welcome">Your <u>CHOICE</u> for your <u>LIFE</u>!!!</h2>
-        <a href="gamepage.php">
-          <button >Play</button>
-        </a>
+       <form action="startgame.php" method="POST"> <div class="stat-item">
+        <span>Mode</span>
+        <select name="game_mode">
+            <option value="0">Dễ</option>
+            <option value="1">Khó</option>
+        </select>
+    </div>
+    <button type="submit">PLAY GAME</button>
+</form>
       </section>
       <section id="aboutus">
         <div class="card">
@@ -75,6 +82,15 @@ if (!isset($_SESSION['username'])) {
           ></iframe>
         </div>
       </section>
+      <section id="vitalwiki">
+        <h2>Vital WiKi</h2>
+        <div class ="button-wiki">
+          <button>Cốt truyện</button>
+          <button>Cách chơi</button>
+          <button>Vật phẩm</button>
+        </div>  
+      </section>
+
     </main>
     <footer>
       <p>&copy; Developed by Pyro Team</p>
