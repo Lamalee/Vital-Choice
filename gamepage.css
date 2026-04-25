@@ -1,163 +1,209 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html, body {
-    min-height: 100vh;
+html,
+body {
+  min-height: 100vh;
 }
 
 body {
-    display: grid;
-    grid-template-columns: 45% 55%;
-    grid-template-rows: 55% 45%;
-    background-image: url("Main_page_bg");
-}
-
-.timer {
-    width: 200px;
-    height: 50px;
-    top: 5px;
-    left: 5px;
-    position: absolute;
-    background-color: #00d7e7;
-    border-radius: 5px;
+  display: grid;
+  grid-template-columns: 45% 55%;
+  grid-template-rows: 50% 50%;
+  background-image: url("Main_page_bg");
 }
 
 .character_container {
-    grid-column: 1;
-    grid-row: 1;
-    background-color: #767373;
-    position: relative;
+  grid-column: 1;
+  grid-row: 1;
+  background-color: #767373;
+  position: relative;
 }
 
-.character
-{
-    width: 380px;
-    height: 300px;
-    background-image: url("Normal_face_bg");
-    background-color: rgb(66, 114, 245); 
-    /* Có ảnh thì xoá background color đi */
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
+.character {
+  width: 380px;
+  height: 300px;
+  background-image: url("Normal_face_bg");
+  background-color: rgb(66, 114, 245);
+  /* Có ảnh thì xoá background color đi */
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+.Day_container{
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  display:flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.Skip_day {
+  width: 50px;
+  height: 30px;
+  background-color: #0b46b5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.Skip_day:hover {
+  background-color: #fbfbfc;
+  color: rgb(3, 112, 245);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  opacity: 0.8;
 }
 
-.bars{
-    width: 250px;
-    height: 320px;
-    background-color: rgb(250, 140, 215);
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    display: grid;
-    grid-template-rows: repeat(6, 1fr);
-    gap: 10px;
-    padding: 10px;
+
+.timer {
+  width: 200px;
+  height: 50px;
+  background-color: #00d7e7;
+  border-radius: 5px;
+}
+
+.bars {
+  width: 250px;
+  height: 320px;
+  background-color: rgb(250, 140, 215);
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  gap: 10px;
+  padding: 10px;
 }
 
 .bar {
-    width: 100%;
-    height: 100%;
-    border: 2px solid rgb(8, 8, 8);
-    border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgb(8, 8, 8);
+  border-radius: 5px;
 }
 
 .bar #Health {
-    background-image: url("Health_bar_bg");
+  background-image: url("Health_bar_bg");
 }
 
 .bar #Hunger {
-    background-image: url("Hunger_bar_bg");
+  background-image: url("Hunger_bar_bg");
 }
 
 .bar #Thirst {
-    background-image: url("Thirst_bar_bg");
+  background-image: url("Thirst_bar_bg");
 }
 
 .bar #Cold {
-    background-image: url("Cold_bar_bg");
+  background-image: url("Cold_bar_bg");
 }
 
 .bar #Illness {
-    background-image: url("Illness_bar_bg");
+  background-image: url("Illness_bar_bg");
 }
 
 .bar #Sanity {
-    background-image: url("Sanity_bar_bg");
+  background-image: url("Sanity_bar_bg");
 }
-
 
 .question_container {
-    grid-column: 2;
-    grid-row: 1;
-    background-color: #70d86c;
-    display: grid; 
-    grid-row: 50% 50%;
-    padding: 20px;
-    gap: 10px;
+  grid-column: 2;
+  grid-row: 1;
+  background-color: #70d86c;
+  display: grid;
+  grid-row: 50% 50%;
+  padding: 20px;
+  gap: 10px;
 }
-.question{
-    width: 100%;
-    height: 100%;
-    background-color: aliceblue;
-    border: 2px solid black;
-    border-radius: 10px;
+.question {
+  width: 100%;
+  height: 100%;
+  background-color: aliceblue;
+  border: 2px solid black;
+  border-radius: 10px;
 }
-.answer_container{
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+.answer_container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
-.answer_button
-{
-    width: 100%;
-    height: 100%;
-    border: 2px solid black;
-    border-radius: 10px;
-    cursor: pointer;
+.answer_button {
+  width: 100%;
+  height: 100%;
+  border: 2px solid black;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: rgb(252, 250, 250);
 }
 .items_container {
-    grid-column: 1 / span 2;
-    grid-row: 2;
-    background-color: #f6d35f;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 20px;
-    gap: 20px;
-    
+  grid-column: 1 / span 2;
+  grid-row: 2;
+  background-image: url("image/wall.png");
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 20px;
+  gap: 20px;  
 }
 .items_container .item_button {
-    width: 100%;
-    height: 100%;
-    border: 2px solid black;
-    border-radius: 10px;
-    cursor: pointer;
+  width: 100%;
+  height: 100%;
+  border: 2px solid black;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  padding: 0;
 }
 
-.items_container #Food{
-    background-image: url("Food_bg");
+.items_container .item_button.active {
+  animation: shine-border 1.2s ease-in-out infinite alternate;
 }
 
-.items_container #Water{
-    background-image: url("Water_bg");
+.items_container #Food.active {
+  border-color: orange;
+  box-shadow: 0 0 16px rgba(255, 165, 0, 0.7);
 }
 
-.items_container #Medicine{
-    background-image: url("Medicine_bg");
+.items_container #Water.active {
+  border-color: blue;
+  box-shadow: 0 0 16px rgba(0, 0, 255, 0.7);
 }
 
-.items_container #Fire{
-    background-image: url("Fire_bg");
+.items_container #Chess.active {
+  border-color: green;
+  box-shadow: 0 0 16px rgba(0, 255, 0, 0.7);
 }
 
-.items_container #Chess{
-    background-image: url("Chess_bg");
+.items_container #Radio.active {
+  border-color: purple;
+  box-shadow: 0 0 16px rgba(128, 0, 128, 0.7);
 }
 
-.items_container #Radio{
-    background-image: url("Radio_bg");
+.items_container #Medicine.active {
+  border-color: cyan;
+  box-shadow: 0 0 16px rgba(0, 255, 255, 0.7);
 }
+
+.items_container #Fire.active {
+  border-color: red;
+  box-shadow: 0 0 16px rgba(255, 0, 0, 0.7);
+}
+
+@keyframes shine-border {
+  from {
+    box-shadow: 0 0 16px rgba(255, 255, 255, 0.5);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+  }
+}
+
