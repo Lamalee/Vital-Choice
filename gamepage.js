@@ -30,6 +30,8 @@ let rd_cold;
 let rd_halucination;
 let dayanchor;
 let isanswering = false;
+let gameOver = false;
+let paused = false;
 function Display_bars() {
   document.getElementById("Health").style.width = (hp / 20) * 100 + "%";
   document.getElementById("Hunger").style.width = (hunger / 15) * 100 + "%";
@@ -83,9 +85,15 @@ function Display_bars() {
 }
 function ResultPage(result) {}
 function Win() {
-  //Cơ chế xếp hạng sẽ được thêm sau
+  gameOver = true;
+  clearInterval(time_dif);
+  document.getElementById("winPopup").style.display = "flex";
 }
-function Lose() {}
+function Lose() {
+  gameOver = true;
+  clearInterval(time_dif);
+  document.getElementById("losePopup").style.display = "flex";
+}
 function renderQuestion(data) {
   return new Promise((resolve) => {
     let t = data.question;
@@ -136,7 +144,7 @@ function Questions_show(tag, type) {
       return renderQuestion(data);
     })
     .finally(() => {
-      isAnswering = false;
+      isanswering = false;
     });
 }
 function EndofDay() {
@@ -205,6 +213,7 @@ function EndofDay() {
   document.body.appendChild(overlay);
 }
 function Time_running() {
+  if (gameOver) return;
   time--;
   document.getElementById("Timer").innerHTML = "Day " + day + ": " + time;
   if (time == 0) {
@@ -217,6 +226,25 @@ function startTimer() {
   clearInterval(time_dif);
   document.getElementById("Timer").innerHTML = "Day " + day + ": " + time;
   time_dif = setInterval(Time_running, 1000);
+}
+function resumeTimer() {
+  if (gameOver) return;
+  clearInterval(time_dif);
+  time_dif = setInterval(Time_running, 1000);
+}
+function Confirm_Quit() {
+  paused = true;
+  clearInterval(time_dif);
+  document.getElementById("confirmPopup").style.display = "flex";
+}
+function closeConfirm() {
+  document.getElementById("confirmPopup").style.display = "none";
+  paused = false;
+  resumeTimer();
+}
+function confirmLose() {
+  document.getElementById("confirmPopup").style.display = "none";
+  Lose();
 }
 function SkipDay() {
   time = 0;
@@ -256,6 +284,7 @@ function randChess() {
   return x ? 0 : 1;
 }
 function New_Day() {
+  if (gameOver) return;
   day++;
   dayanchor++;
   thirst += dif_thirst;
@@ -319,9 +348,11 @@ function New_Day() {
   }
   if (hp == 0) {
     Lose();
+    return;
   }
   if (radio == 0) {
     Win();
+    return;
   }
   Display_bars();
 }
