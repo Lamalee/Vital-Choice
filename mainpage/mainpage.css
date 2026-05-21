@@ -1,0 +1,480 @@
+/* =========================================================
+   MAINPAGE - ĐỒNG BỘ VỚI GAMEPAGE
+   Style: pixel survival / dark chest UI / vàng nâu
+   Giữ nguyên HTML/PHP, chỉ thay mainpage.css
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Pixelify Sans", sans-serif;
+  color: #fff1c7;
+
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0.72)),
+    url("../image/mainBG.png");
+
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.teacher-page {
+  margin: 0;
+  font-family: "Pixelify Sans", sans-serif;
+  color: #fff1c7;
+
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0.72)),
+    url("../image/teacher_background.jpg");
+
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* ================= HEADER ================= */
+
+header {
+  width: 560px;
+  position: sticky;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  padding: 14px 30px;
+  border-radius: 14px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: linear-gradient(
+    145deg,
+    rgba(24, 17, 11, 0.92),
+    rgba(5, 5, 5, 0.88)
+  );
+
+  border: 3px solid #5c3a1c;
+
+  backdrop-filter: blur(8px);
+
+  box-shadow:
+    inset 0 0 16px rgba(255, 210, 120, 0.08),
+    0 8px 20px rgba(0, 0, 0, 0.55);
+}
+
+.headerVT {
+  text-decoration: none;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #ffd76a;
+
+  text-shadow:
+    2px 2px 0 #000,
+    -1px -1px 0 rgba(255, 255, 255, 0.45);
+}
+
+/* ================= NAV ================= */
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  gap: 16px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff1c7;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  padding: 8px 12px;
+  border-radius: 8px;
+
+  text-shadow: 2px 2px 0 #000;
+  transition: 0.18s;
+}
+
+nav a:hover {
+  background: linear-gradient(#ffd76a, #b97a25);
+  color: #20140b;
+
+  text-shadow: -1px -1px 0 rgba(255, 255, 255, 0.45);
+
+  box-shadow:
+    0 0 14px rgba(255, 218, 77, 0.45),
+    0 4px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* ================= MAIN ================= */
+
+main {
+  text-align: center;
+  margin-top: 110px;
+}
+
+#home {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: -110px;
+  padding-top: 80px;
+}
+
+/* ================= WELCOME TEXT ================= */
+
+.welcome {
+  margin: 18px 0;
+  font-size: clamp(48px, 7vw, 90px);
+  line-height: 1.08;
+
+  color: #e3a805;
+
+  text-shadow:
+    4px 4px 0 #1a1008,
+    -2px -2px 0 #fff1c7,
+    0 0 18px rgba(255, 214, 87, 0.45);
+}
+
+.welcome a {
+  color: #ffd76a;
+  text-decoration: none;
+  transition: 0.2s;
+
+  text-shadow:
+    4px 4px 0 #1a1008,
+    -2px -2px 0 #fff1c7;
+}
+
+.welcome a:hover {
+  color: #ffb732;
+  filter: brightness(1.15);
+}
+
+/* ================= PLAY FORM ================= */
+
+.divPlay {
+  margin-top: 30px;
+  padding: 22px 32px;
+
+  font-size: 30px;
+  color: #ffd76a;
+
+  background: linear-gradient(
+    145deg,
+    rgba(24, 17, 11, 0.82),
+    rgba(5, 5, 5, 0.78)
+  );
+
+  border: 3px solid #5c3a1c;
+  border-radius: 16px;
+
+  backdrop-filter: blur(6px);
+
+  text-shadow:
+    2px 2px 0 #000,
+    -1px -1px 0 rgba(255, 255, 255, 0.45);
+
+  box-shadow:
+    inset 0 0 16px rgba(255, 210, 120, 0.08),
+    0 10px 24px rgba(0, 0, 0, 0.55);
+}
+
+.exam-code-container {
+  margin: 0 0 16px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.exam-code-container input[type="text"] {
+  width: 190px;
+  padding: 12px 16px;
+
+  border: 3px solid #9b6a35;
+  border-radius: 10px;
+
+  font-size: 17px;
+  font-family: "Pixelify Sans", sans-serif;
+  text-align: center;
+
+  color: #fff1c7;
+  background: rgba(32, 18, 10, 0.92);
+
+  outline: none;
+
+  box-shadow:
+    inset 0 0 12px rgba(0, 0, 0, 0.7),
+    0 0 12px rgba(255, 218, 77, 0.18);
+
+  transition: 0.22s;
+}
+
+.exam-code-container input[type="text"]::placeholder {
+  color: rgba(255, 241, 199, 0.72);
+}
+
+.exam-code-container input[type="text"]:focus {
+  width: 250px;
+  border-color: #ffd76a;
+
+  background: rgba(42, 22, 10, 0.96);
+
+  box-shadow:
+    inset 0 0 12px rgba(0, 0, 0, 0.72),
+    0 0 18px rgba(255, 218, 77, 0.55);
+}
+
+/* ================= BUTTON ================= */
+
+button {
+  font-family: "Pixelify Sans", sans-serif;
+  font-weight: bold;
+
+  background: linear-gradient(#ffd76a, #b97a25);
+  color: #20140b;
+
+  padding: 14px 38px;
+  margin-bottom: 12px;
+
+  font-size: 22px;
+
+  border: 3px solid #2a1a0d;
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  box-shadow:
+    5px 5px 0 #120b06,
+    0 0 16px rgba(255, 218, 77, 0.38);
+
+  text-shadow: -1px -1px 0 rgba(255, 255, 255, 0.55);
+
+  transition: 0.16s;
+}
+
+button:hover {
+  background: linear-gradient(#fff06d, #d99028);
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    5px 8px 0 #120b06,
+    0 0 22px rgba(255, 218, 77, 0.58);
+}
+
+button:active {
+  transform: translateY(2px);
+  box-shadow:
+    2px 2px 0 #120b06,
+    0 0 12px rgba(255, 218, 77, 0.38);
+}
+
+/* ================= MODE SELECT ================= */
+
+select {
+  padding: 10px 32px 10px 14px;
+
+  border-radius: 10px;
+  border: 3px solid #9b6a35;
+
+  background: linear-gradient(#fff1c7, #d9ad5c);
+
+  color: #20140b;
+
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  box-shadow:
+    3px 3px 0 #120b06,
+    0 0 12px rgba(255, 218, 77, 0.28);
+}
+
+select:hover {
+  border-color: #ffd76a;
+  background: linear-gradient(#fff4d2, #e6bd68);
+}
+
+option {
+  background-color: #2b1b10;
+  color: #fff1c7;
+}
+
+option:checked {
+  background-color: #b97a25;
+  color: #20140b;
+}
+
+/* ================= ABOUT US ================= */
+
+#aboutus {
+  min-height: 100vh;
+
+  display: flex;
+  padding: 120px 40px 200px;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 34px;
+}
+
+.card {
+  width: 350px;
+  height: auto;
+
+  padding: 20px;
+  margin: 0 10px 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: linear-gradient(
+    145deg,
+    rgba(24, 17, 11, 0.9),
+    rgba(5, 5, 5, 0.84)
+  );
+
+  border: 3px solid #5c3a1c;
+  border-radius: 16px;
+
+  backdrop-filter: blur(8px);
+
+  color: #fff1c7;
+
+  box-shadow:
+    inset 0 0 16px rgba(255, 210, 120, 0.08),
+    0 10px 24px rgba(0, 0, 0, 0.55);
+}
+
+.card:hover {
+  border-color: #ffd76a;
+
+  box-shadow:
+    inset 0 0 16px rgba(255, 210, 120, 0.08),
+    0 0 22px rgba(255, 218, 77, 0.3),
+    0 10px 24px rgba(0, 0, 0, 0.55);
+}
+
+.card-title {
+  font-size: 28px;
+  color: #ffd76a;
+  margin-bottom: 12px;
+
+  text-shadow:
+    2px 2px 0 #000,
+    -1px -1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.card p {
+  font-size: 17px;
+  line-height: 1.45;
+  text-shadow: 2px 2px 0 #000;
+}
+
+img {
+  width: 100%;
+  height: auto;
+
+  border-radius: 12px;
+  border: 3px solid #2a1a0d;
+
+  box-shadow:
+    inset 0 0 16px rgba(0, 0, 0, 0.5),
+    0 6px 14px rgba(0, 0, 0, 0.45);
+}
+
+iframe {
+  width: 100%;
+  height: 200px;
+
+  border: 3px solid #2a1a0d;
+  border-radius: 12px;
+
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45);
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+  margin-top: 100px;
+  margin-bottom: 0;
+  padding: 20px;
+
+  text-align: center;
+
+  background: linear-gradient(
+    145deg,
+    rgba(24, 17, 11, 0.92),
+    rgba(5, 5, 5, 0.88)
+  );
+
+  border-top: 3px solid #5c3a1c;
+
+  color: #fff1c7;
+
+  text-shadow: 2px 2px 0 #000;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1000px) {
+  header {
+    width: calc(100% - 30px);
+    padding: 12px 18px;
+  }
+
+  header h1 {
+    font-size: 22px;
+  }
+
+  nav ul {
+    gap: 8px;
+  }
+
+  nav a {
+    font-size: 14px;
+    padding: 6px 8px;
+  }
+
+  .welcome {
+    font-size: 46px;
+  }
+
+  #aboutus {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+  }
+
+  .card {
+    width: min(90%, 420px);
+  }
+}
