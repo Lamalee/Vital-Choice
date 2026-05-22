@@ -151,18 +151,58 @@ body {
 }
 
 .history-list {
-  max-height: 400px;
+  max-height: 500px;
   overflow-y: auto;
+  border: 1px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-.history-row {
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1a1a1a;
+}
+
+.history-table thead {
+  background-color: #0d0d0d;
+  position: sticky;
+  top: 0;
+}
+
+.history-table th {
   padding: 15px;
+  text-align: center;
+  font-weight: bold;
+  color: #c27122;
+  border-bottom: 2px solid #c27122;
+  border-right: 1px solid #333;
+  font-size: 16px;
+}
+
+.history-table th:last-child {
+  border-right: none;
+}
+
+.history-table td {
+  padding: 15px;
+  text-align: center;
+  border-right: 1px solid #333;
   border-bottom: 1px solid #222;
-  font-size: 18px;
+  font-size: 16px;
   color: #cccccc;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+}
+
+.history-table td:last-child {
+  border-right: none;
+}
+
+.history-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.history-table tbody tr:hover {
+  background-color: #222;
 }
 
 .no-data {
@@ -190,7 +230,7 @@ body {
   color: #0ff147;
   font-weight: bold;
 }
-.rank-jobless{
+.rank-jobless {
   color: #888;
   font-weight: bold;
 }

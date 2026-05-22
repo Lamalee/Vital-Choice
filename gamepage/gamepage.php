@@ -5,8 +5,8 @@ if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit();
 }
-$exam_id = $_GET['exam_id'] ?? null;
-$new_test = $_GET['new_test'] ?? null;
+$exam_id = $_GET['exam_id'] ?? NULL;
+$new_test = $_GET['new_test'] ?? NULL;
 if ($new_test == 1) {
     unset($_SESSION['exam_questions_queue']);
 }

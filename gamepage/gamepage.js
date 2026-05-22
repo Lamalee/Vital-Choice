@@ -505,7 +505,12 @@ async function Start() {
   rd_illness = 0;
   rd_cold = 0;
   rd_halucination = 0;
-  if (!hardness) {
+  const response = await fetch("../api/get_game_mode.php");
+  const data = await response.json();
+  if (data.mode) {
+    hardness = data.mode;
+  }
+  if (hardness == 0) {
     radio = 3;
   } else {
     radio = 4;

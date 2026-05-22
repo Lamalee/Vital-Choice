@@ -9,7 +9,9 @@ if (isset($_SESSION['current_session_id'])) {
     $is_correct = $_POST['is_correct'];
     $day = $_POST['day'];
     $exam_id = $_POST['exam_id'];
-
+    if ($exam_id === "null" || $exam_id === "") {
+        $exam_id = null;
+    }
     $sql = "INSERT INTO history_answers (session_id, question_id, answer_id, is_correct, day, exam_id) 
             VALUES (?, ?, ?, ?, ?, ?)";
     
