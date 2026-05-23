@@ -348,6 +348,7 @@ $current_teacher_id = $_SESSION['id'];
     <table border="1">
       <thead>
         <tr>
+          <th>Trạng thái</th>
           <th>Mã đề</th>
           <th>Tên đề</th>
           <th>Thời gian 1 ngày</th>

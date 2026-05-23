@@ -8,6 +8,18 @@ $tag = $_POST['tag'] ?? 0;
 $data = null;
 
 if ($exam_id && $exam_id !== 'null' && $exam_id !== '') {
+    // Verify exam is approved (pending = 1)
+    $verifyExam = $conn->prepare("SELECT exam_id FROM exams WHERE exam_id = ? AND pending = 1");
+    $verifyExam->bind_param("i", $exam_id);
+    $verifyExam->execute();
+    $examCheck = $verifyExam->get_result()->fetch_assoc();
+    $verifyExam->close();
+    
+    if (!$examCheck) {
+        echo json_encode(["error" => "Bộ đề chưa được phê duyệt"]);
+        exit();
+    }
+    
     if (empty($_SESSION['exam_questions_queue'])) {
         $resQ = mysqli_query($conn, "SELECT question_id FROM exam_questions WHERE exam_id = $exam_id");
         $all_ids = [];

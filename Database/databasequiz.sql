@@ -5,6 +5,8 @@ CREATE TABLE players (
     username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     role TINYINT DEFAULT 0, -- 0:user, 1:teacher, 2:admin
+    pending TINYINT DEFAULT 0, -- 0:waiting for approval, 1:approved
+    status TINYINT DEFAULT 1, -- 0:banned, 1:active
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 CREATE TABLE questions (

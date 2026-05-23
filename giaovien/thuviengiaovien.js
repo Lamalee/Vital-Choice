@@ -58,6 +58,9 @@ async function loadData() {
     const row = document.createElement("tr");
     row.innerHTML =
       "<td>" +
+      (item.pending == 0 ? "Đang chờ" : "Đã duyệt") +
+      "</td>" +
+      "<td>" +
       item.exam_code +
       "</td>" +
       "<td>" +
@@ -80,9 +83,9 @@ async function loadData() {
       "<button class='btn-action btn-delete' onclick='deleteExam(" +
       item.exam_id +
       ")'>Xóa</button>" +
-      "<button class='btn-action btn-checkHistoryOfStudent' onclick = seeHistory(" +
+      "<button class='btn-action btn-checkHistoryOfStudent' onclick='seeHistory(" +
       item.exam_id +
-      ")>Lịch sử làm bài </button>" +
+      ")'>Lịch sử làm bài</button>" +
       "</td>";
 
     tableBody.appendChild(row);

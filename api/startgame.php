@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $exam_id = null;
 
     if (!empty($exam_code)) {
-        $stmt = $conn->prepare("SELECT exam_id FROM exams WHERE exam_code = ?");
+        $stmt = $conn->prepare("SELECT exam_id FROM exams WHERE exam_code = ? AND pending = 1");
         $stmt->bind_param("s", $exam_code);
         $stmt->execute();
         $res = $stmt->get_result();
