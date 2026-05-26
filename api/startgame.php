@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $exam_id = null;
 
     if (!empty($exam_code)) {
-        $stmt = $conn->prepare("SELECT exam_id FROM exams WHERE exam_code = ? AND pending = 1");
+        $stmt = $conn->prepare("SELECT exam_id FROM exams WHERE exam_code = ?");
         $stmt->bind_param("s", $exam_code);
         $stmt->execute();
         $res = $stmt->get_result();
@@ -25,7 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         }
     }
-    unset($_SESSION['exam_questions_queue']);
+    unset($_SESSION['exam_questions_queue_0']);
+    unset($_SESSION['exam_questions_queue_1']);
+    unset($_SESSION['exam_questions_queue_2']);
     $_SESSION['used_questions'] = [];
     if ($exam_id === null) {
     $sql = "INSERT INTO game_sessions 

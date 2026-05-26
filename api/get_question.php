@@ -8,42 +8,122 @@ $tag = $_POST['tag'] ?? 0;
 $data = null;
 
 if ($exam_id && $exam_id !== 'null' && $exam_id !== '') {
-    // Verify exam is approved (pending = 1)
-    $verifyExam = $conn->prepare("SELECT exam_id FROM exams WHERE exam_id = ? AND pending = 1");
-    $verifyExam->bind_param("i", $exam_id);
-    $verifyExam->execute();
-    $examCheck = $verifyExam->get_result()->fetch_assoc();
-    $verifyExam->close();
-    
-    if (!$examCheck) {
-        echo json_encode(["error" => "Bộ đề chưa được phê duyệt"]);
-        exit();
-    }
-    
-    if (empty($_SESSION['exam_questions_queue'])) {
-        $resQ = mysqli_query($conn, "SELECT question_id FROM exam_questions WHERE exam_id = $exam_id");
-        $all_ids = [];
-        while ($q = mysqli_fetch_assoc($resQ)) {
-            $all_ids[] = (int)$q['question_id'];
+    if ($tag == 0) {
+        if (empty($_SESSION['exam_questions_queue_0'])) {
+            $resQ = mysqli_query($conn, "SELECT question_id FROM exam_questions WHERE exam_id = $exam_id AND tag = 0");
+            $all_ids = [];
+            while ($q = mysqli_fetch_assoc($resQ)) {
+                $all_ids[] = (int)$q['question_id'];
+            }
+            shuffle($all_ids);
+            $_SESSION['exam_questions_queue_0'] = $all_ids;
         }
-        shuffle($all_ids); 
-        $_SESSION['exam_questions_queue'] = $all_ids;
+        if (!empty($_SESSION['exam_questions_queue_0'])) {
+            $question_id = array_shift($_SESSION['exam_questions_queue_0']);
+            $sql = "SELECT * FROM questions WHERE question_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $question_id);
+            $stmt->execute();
+            $data = $stmt->get_result()->fetch_assoc();
+        }
     }
-    if (!empty($_SESSION['exam_questions_queue'])) {
-        $question_id = array_shift($_SESSION['exam_questions_queue']);
-        $sql = "SELECT * FROM questions WHERE question_id = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $question_id);
-        $stmt->execute();
-        $data = $stmt->get_result()->fetch_assoc();
+    if ($tag == 1) {
+        if (empty($_SESSION['exam_questions_queue_1'])) {
+            $resQ = mysqli_query($conn, "SELECT question_id FROM exam_questions WHERE exam_id = $exam_id AND tag = 1");
+            $all_ids = [];
+            while ($q = mysqli_fetch_assoc($resQ)) {
+                $all_ids[] = (int)$q['question_id'];
+            }
+            shuffle($all_ids);
+            $_SESSION['exam_questions_queue_1'] = $all_ids;
+        }
+        if (!empty($_SESSION['exam_questions_queue_1'])) {
+            $question_id = array_shift($_SESSION['exam_questions_queue_1']);
+            $sql = "SELECT * FROM questions WHERE question_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $question_id);
+            $stmt->execute();
+            $data = $stmt->get_result()->fetch_assoc();
+        }
+    }
+    if ($tag == 2) {
+        if (empty($_SESSION['exam_questions_queue_2'])) {
+            $resQ = mysqli_query($conn, "SELECT question_id FROM exam_questions WHERE exam_id = $exam_id AND tag = 2");
+            $all_ids = [];
+            while ($q = mysqli_fetch_assoc($resQ)) {
+                $all_ids[] = (int)$q['question_id'];
+            }
+            shuffle($all_ids);
+            $_SESSION['exam_questions_queue_2'] = $all_ids;
+        }
+        if (!empty($_SESSION['exam_questions_queue_2'])) {
+            $question_id = array_shift($_SESSION['exam_questions_queue_2']);
+            $sql = "SELECT * FROM questions WHERE question_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $question_id);
+            $stmt->execute();
+            $data = $stmt->get_result()->fetch_assoc();
+        }
     }
 }
 if (!$data && (!$exam_id || $exam_id === 'null' || $exam_id === '')) {
-    $sql = "SELECT * FROM questions WHERE type = ? AND tag = ? ORDER BY RAND() LIMIT 1";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ii", $type, $tag);
-    $stmt->execute();
-    $data = $stmt->get_result()->fetch_assoc();
+    if ($tag == 0) {
+        if (empty($_SESSION['exam_questions_queue_0'])) {
+            $resQ = mysqli_query($conn, "SELECT question_id FROM questions WHERE type = 0 AND tag = 0");
+            $all_ids = [];
+            while ($q = mysqli_fetch_assoc($resQ)) {
+                $all_ids[] = (int)$q['question_id'];
+            }
+            shuffle($all_ids);
+            $_SESSION['exam_questions_queue_0'] = $all_ids;
+        }
+        if (!empty($_SESSION['exam_questions_queue_0'])) {
+            $question_id = array_shift($_SESSION['exam_questions_queue_0']);
+            $sql = "SELECT * FROM questions WHERE question_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $question_id);
+            $stmt->execute();
+            $data = $stmt->get_result()->fetch_assoc();
+        }
+    }
+    if ($tag == 1) {
+        if (empty($_SESSION['exam_questions_queue_1'])) {
+            $resQ = mysqli_query($conn, "SELECT question_id FROM questions WHERE type = 0 AND tag = 1");
+            $all_ids = [];
+            while ($q = mysqli_fetch_assoc($resQ)) {
+                $all_ids[] = (int)$q['question_id'];
+            }
+            shuffle($all_ids);
+            $_SESSION['exam_questions_queue_1'] = $all_ids;
+        }
+        if (!empty($_SESSION['exam_questions_queue_1'])) {
+            $question_id = array_shift($_SESSION['exam_questions_queue_1']);
+            $sql = "SELECT * FROM questions WHERE question_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $question_id);
+            $stmt->execute();
+            $data = $stmt->get_result()->fetch_assoc();
+        }
+    }
+    if ($tag == 2) {
+        if (empty($_SESSION['exam_questions_queue_2'])) {
+            $resQ = mysqli_query($conn, "SELECT question_id FROM questions WHERE type = 0 AND tag = 2");
+            $all_ids = [];
+            while ($q = mysqli_fetch_assoc($resQ)) {
+                $all_ids[] = (int)$q['question_id'];
+            }
+            shuffle($all_ids);
+            $_SESSION['exam_questions_queue_2'] = $all_ids;
+        }
+        if (!empty($_SESSION['exam_questions_queue_2'])) {
+            $question_id = array_shift($_SESSION['exam_questions_queue_2']);
+            $sql = "SELECT * FROM questions WHERE question_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $question_id);
+            $stmt->execute();
+            $data = $stmt->get_result()->fetch_assoc();
+        }
+    }
 }
 if (!$data) {
     echo json_encode(["error" => "No question found"]);
@@ -59,14 +139,13 @@ $answers = [];
 while ($row = $result1->fetch_assoc()) {
     $answers[] = $row;
 }
-shuffle($answers); 
+shuffle($answers);
 echo json_encode([
     "question_id" => $data['question_id'],
     "question" => $data['content'],
     "answers" => $answers
 ]);
 
-if(isset($stmt)) $stmt->close();
+if (isset($stmt)) $stmt->close();
 $stmt1->close();
 $conn->close();
-?>
