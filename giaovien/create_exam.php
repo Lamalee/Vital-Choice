@@ -72,6 +72,7 @@ $id = $_SESSION['id'];
           <button id="rsContent" onclick="resetContent()">Làm trống ô nhập</button>
           <button id="addQuestionInLibrary" onclick="addQuestion()">Thêm vào thư viện chung</button>
           <button id="addQuestionInExam" onclick="addQuestionInExam()">Lưu & Thêm vào đề này</button>
+          <button id="updateQuestion" onclick="updateQuestion()">Cập nhật câu hỏi</button>
           <button id="exitBtn" onclick="saveAndExit()" style="background-color: #f44336; color: white;">Lưu và Thoát</button>
         </div> 
       </div> <div class="container_listQuestion">
