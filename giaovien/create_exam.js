@@ -69,7 +69,24 @@ async function addQuestion() {
 }
 
 function saveAndExit() {
-  window.location.href = "thuviengiaovien.php";
+  let formDataLink = new FormData();
+  formDataLink.append("exam_id", CURRENT_EXAM_ID);
+  try {
+    const response = await fetch("../api/check_new_exam.php", {
+      method: "POST",
+      body: formDataLink,
+    });
+    const result = await response.json();
+    if (result.success) {
+      window.location.href = "thuviengiaovien.php";
+    } else {
+      showErrorModal(result.message);
+      console.log("Lỗi: ", result.message);
+    }
+  } catch (error) {
+    console.error("Lỗi kết nối:", error);
+  }
+  
 }
 async function addQuestionInExam() {
   let newID = await addQuestion();
@@ -77,6 +94,7 @@ async function addQuestionInExam() {
   let formDataLink = new FormData();
   formDataLink.append("exam_id", CURRENT_EXAM_ID);
   formDataLink.append("question_id", newID);
+  formDataLink.append("question_tag", document.querySelector('input[name="tag"]:checked').value);
   try {
     const response = await fetch("../api/add_question_to_exam.php", {
       method: "POST",
