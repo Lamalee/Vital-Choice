@@ -1,24 +1,26 @@
+let selectQuestionId = null;
 function backHome() {
   window.location.href = "../giaovien/TeacherPage.php";
 }
 
 function closeErrorModal() {
-  document.getElementById('errorModal').style.display = 'none';
+  document.getElementById("errorModal").style.display = "none";
 }
 
 function showErrorModal(message) {
-  document.getElementById('errorMessage').textContent = message;
-  document.getElementById('errorModal').style.display = 'block';
+  document.getElementById("errorMessage").textContent = message;
+  document.getElementById("errorModal").style.display = "block";
 }
 
 // Đóng modal khi click vào background
-window.onclick = function(event) {
-  const modal = document.getElementById('errorModal');
+window.onclick = function (event) {
+  const modal = document.getElementById("errorModal");
   if (event.target === modal) {
     closeErrorModal();
   }
-}
+};
 function resetContent() {
+  selectQuestionId = null;
   document.getElementById("question").value = "";
   document.getElementById("AnswerA").value = "";
   document.getElementById("AnswerB").value = "";
@@ -141,6 +143,13 @@ async function loadQuestions(page = 1) {
     const div = document.createElement("div");
     div.className = "question-item";
     div.dataset.questionId = q.question_id;
+
+    div.addEventListener("click", (e) => {
+      if (e.target.tagName !== "INPUT") {
+        selectQuestionId = q.question_id;
+        loadQuestionDetails(q.question_id);
+      }
+    });
 
     // Add right-click context menu
     div.addEventListener("contextmenu", (e) => {
@@ -268,3 +277,98 @@ async function deleteQuestion(questionId) {
 }
 
 loadQuestions();
+
+async function loadQuestionDetails(questionId) {
+  try {
+    const formData = new FormData();
+    formData.append("question_id", questionId);
+    const response = await fetch("../api/get_question_details.php", {
+      method: "POST",
+      body: formData,
+    });
+    const result = await response.json();
+    if (result.success) {
+      document.getElementById("question").value = result.question.content || "";
+
+      const answers = result.answers;
+      const answerMap = {};
+      answers.forEach((ans) => {
+        answerMap[ans.choice] = ans.content;
+      });
+
+      document.getElementById("AnswerA").value = answerMap["A"] || "";
+      document.getElementById("AnswerB").value = answerMap["B"] || "";
+      document.getElementById("AnswerC").value = answerMap["C"] || "";
+      document.getElementById("AnswerD").value = answerMap["D"] || "";
+
+      answers.forEach((ans) => {
+        if (ans.is_correct == 1) {
+          const radios = document.getElementsByName("correct_answer");
+          for (let i = 0; i < radios.length; i++) {
+            if (radios[i].value === ans.choice) {
+              radios[i].checked = true;
+            }
+          }
+        }
+      });
+      const tagRadios = document.getElementsByName("tag");
+      for (let i = 0; i < tagRadios.length; i++) {
+        if (tagRadios[i].value == result.question.tag) {
+          tagRadios[i].checked = true;
+        }
+      }
+    } else {
+      showErrorModal("Lỗi: " + result.message);
+    }
+  } catch (error) {
+    console.error("Lỗi kết nối", error);
+    showErrorModal("Không thể tải chi tiết câu hỏi");
+  }
+}
+async function updateQuestion() {
+  if (!selectQuestionId) {
+    showErrorModal("Vui lòng chọn một câu hỏi để cập nhật.");
+    return;
+  }
+  const formData = new FormData();
+  formData.append("question_id", selectQuestionId);
+  formData.append("content", document.getElementById("question").value);
+  formData.append(
+    "tag",
+    document.querySelector('input[name="tag"]:checked').value,
+  );
+  formData.append("ansA", "A. " + document.getElementById("AnswerA").value);
+  formData.append("ansB", "B. " + document.getElementById("AnswerB").value);
+  formData.append("ansC", "C. " + document.getElementById("AnswerC").value);
+  formData.append("ansD", "D. " + document.getElementById("AnswerD").value);
+  formData.append(
+    "correct",
+    document.querySelector('input[name="correct_answer"]:checked').value,
+  );
+  if (
+    !formData.get("content") ||
+    !formData.get("ansA") ||
+    !formData.get("ansB") ||
+    !formData.get("ansC") ||
+    !formData.get("ansD")
+  ) {
+    showErrorModal("Vui lòng điền đầy đủ thông tin câu hỏi và đáp án.");
+    return;
+  }
+  try {
+    const response = await fetch("../api/update_question.php", {
+      method: "POST",
+      body: formData,
+    });
+    const result = await response.json();
+    if (result.success) {
+      showErrorModal("Cập nhật câu hỏi thành công!");
+      loadQuestions(currentPage);
+    } else {
+      showErrorModal("Lỗi cập nhật câu hỏi: " + result.message);
+    }
+  } catch (error) {
+    console.error("Lỗi kết nối:", error);
+    showErrorModal("Không thể cập nhật câu hỏi");
+  }
+}

@@ -129,7 +129,7 @@ nav button:hover {
   transform: translateY(-2px);
 }
 button {
-  height: 30px;
+  height: 35px;
   border-radius: 8px;
   background: linear-gradient(#ffd76a, #b97a25);
   color: #20140b;
