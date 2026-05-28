@@ -20,6 +20,7 @@ window.onclick = function (event) {
   }
 };
 function resetContent() {
+  selectQuestionId = null;
   document.getElementById("question").value = "";
   document.getElementById("AnswerA").value = "";
   document.getElementById("AnswerB").value = "";
