@@ -8,16 +8,67 @@ if (!isset($_SESSION['username'])) {
 $exam_id = $_GET['exam_id'] ?? NULL;
 $new_test = $_GET['new_test'] ?? NULL;
 if ($new_test == 1) {
-    unset($_SESSION['exam_questions_queue']);
+    unset($_SESSION['exam_questions_queue_0']);
+    unset($_SESSION['exam_questions_queue_1']);
+    unset($_SESSION['exam_questions_queue_2']);
 }
-if ($exam_id && empty($_SESSION['exam_questions_queue'])) {
-    $resQ = mysqli_query($conn, "SELECT question_id FROM exam_questions WHERE exam_id = $exam_id");
-    $all_ids = [];
-    while ($q = mysqli_fetch_assoc($resQ)) {
-        $all_ids[] = (int)$q['question_id'];
+if ($exam_id) {
+    if (empty($_SESSION['exam_questions_queue_0'])) {
+        $resQ = mysqli_query($conn, "SELECT question_id FROM exam_questions WHERE exam_id = $exam_id AND tag = 0");
+        $all_ids = [];
+        while ($q = mysqli_fetch_assoc($resQ)) {
+            $all_ids[] = (int)$q['question_id'];
+        }
+        shuffle($all_ids);
+        $_SESSION['exam_questions_queue_0'] = $all_ids;
     }
-    shuffle($all_ids);
-    $_SESSION['exam_questions_queue'] = $all_ids;
+    if (empty($_SESSION['exam_questions_queue_1'])) {
+        $resQ = mysqli_query($conn, "SELECT question_id FROM exam_questions WHERE exam_id = $exam_id AND tag = 1");
+        $all_ids = [];
+        while ($q = mysqli_fetch_assoc($resQ)) {
+            $all_ids[] = (int)$q['question_id'];
+        }
+        shuffle($all_ids);
+        $_SESSION['exam_questions_queue_1'] = $all_ids;
+    }
+    if (empty($_SESSION['exam_questions_queue_2'])) {
+        $resQ = mysqli_query($conn, "SELECT question_id FROM exam_questions WHERE exam_id = $exam_id AND tag = 2");
+        $all_ids = [];
+        while ($q = mysqli_fetch_assoc($resQ)) {
+            $all_ids[] = (int)$q['question_id'];
+        }
+        shuffle($all_ids);
+        $_SESSION['exam_questions_queue_2'] = $all_ids;
+    }
+}
+else{
+    if (empty($_SESSION['exam_questions_queue_0'])) {
+        $resQ = mysqli_query($conn, "SELECT question_id FROM questions WHERE type = 0 AND tag = 0");
+        $all_ids = [];
+        while ($q = mysqli_fetch_assoc($resQ)) {
+            $all_ids[] = (int)$q['question_id'];
+        }
+        shuffle($all_ids);
+        $_SESSION['exam_questions_queue_0'] = $all_ids;
+    }
+    if (empty($_SESSION['exam_questions_queue_1'])) {
+        $resQ = mysqli_query($conn, "SELECT question_id FROM questions WHERE type = 0 AND tag = 1");
+        $all_ids = [];
+        while ($q = mysqli_fetch_assoc($resQ)) {
+            $all_ids[] = (int)$q['question_id'];
+        }
+        shuffle($all_ids);
+        $_SESSION['exam_questions_queue_1'] = $all_ids;
+    }
+    if (empty($_SESSION['exam_questions_queue_2'])) {
+        $resQ = mysqli_query($conn, "SELECT question_id FROM questions WHERE type = 0 AND tag = 2");
+        $all_ids = [];
+        while ($q = mysqli_fetch_assoc($resQ)) {
+            $all_ids[] = (int)$q['question_id'];
+        }
+        shuffle($all_ids);
+        $_SESSION['exam_questions_queue_2'] = $all_ids;
+    }
 }
 
 ?>
