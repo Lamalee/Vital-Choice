@@ -278,10 +278,23 @@ async function loadQuestionDetails(questionId) {
         answerMap[ans.choice] = ans.content;
       });
 
-      document.getElementById("AnswerA").value = answerMap["A"] || "";
-      document.getElementById("AnswerB").value = answerMap["B"] || "";
-      document.getElementById("AnswerC").value = answerMap["C"] || "";
-      document.getElementById("AnswerD").value = answerMap["D"] || "";
+      // Remove prefix (A., B., C., D.) and quotes from answer content
+      const removePrefix = (content) => {
+        return content.replace(/^[A-D]\.\s*[""]?/, "").replace(/[""]$/, "");
+      };
+
+      document.getElementById("AnswerA").value = removePrefix(
+        answerMap["A"] || "",
+      );
+      document.getElementById("AnswerB").value = removePrefix(
+        answerMap["B"] || "",
+      );
+      document.getElementById("AnswerC").value = removePrefix(
+        answerMap["C"] || "",
+      );
+      document.getElementById("AnswerD").value = removePrefix(
+        answerMap["D"] || "",
+      );
 
       answers.forEach((ans) => {
         if (ans.is_correct == 1) {

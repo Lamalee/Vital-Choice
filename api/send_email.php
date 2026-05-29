@@ -26,7 +26,7 @@ function sendEmailNotification($userEmail, $username, $subject, $message) {
         
         // Gmail Configuration - Update these with your credentials
         $mail->Username = 'chongkhai2006@gmail.com';  // Change to your Gmail
-        $mail->Password = 'mleq ajbz qilz mkrf';      // Change to your App Password
+        $mail->Password = 'ditq qwzu wimn vnzb';      // Change to your App Password
         
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
