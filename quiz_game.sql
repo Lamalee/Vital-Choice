@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 21, 2026 lúc 04:54 PM
+-- Thời gian đã tạo: Th5 29, 2026 lúc 10:16 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -441,16 +441,6 @@ INSERT INTO `answers` (`answer_id`, `question_id`, `choice`, `content`, `is_corr
 (438, 120, 'B', '\"B. Sử dụng thuộc tính z-index để phân lớp hiển thị\"', 0, ''),
 (439, 120, 'C', '\"C. Thực hiện việc căn giữa nội dung văn bản trong khối\"', 0, ''),
 (440, 120, 'D', '\"D. Sử dụng thuộc tính z-index để phân lớp hiển thị\"', 1, ''),
-(451, 126, 'T', '\"Đúng\"', 0, ''),
-(452, 126, 'F', '\"Sai\"', 1, ''),
-(453, 127, 'T', '\"Đúng\"', 1, ''),
-(454, 127, 'F', '\"Sai\"', 0, ''),
-(455, 128, 'T', '\"Đúng\"', 0, ''),
-(456, 128, 'F', '\"Sai\"', 1, ''),
-(457, 129, 'T', '\"Đúng\"', 1, ''),
-(458, 129, 'F', '\"Sai\"', 0, ''),
-(459, 130, 'T', '\"Đúng\"', 0, ''),
-(460, 130, 'F', '\"Sai\"', 1, ''),
 (461, 131, 'A', '\"A. Sử dụng hàm explode() để cắt chuỗi thành mảng\"', 0, ''),
 (462, 131, 'B', '\"B. Thực hiện việc nối các chuỗi lại với nhau\"', 0, ''),
 (463, 131, 'C', '\"C. Sử dụng hàm explode() để cắt chuỗi thành mảng\"', 1, ''),
@@ -651,70 +641,22 @@ INSERT INTO `answers` (`answer_id`, `question_id`, `choice`, `content`, `is_corr
 (658, 180, 'B', '\"B. Ứng dụng web hoạt động và cài đặt như ứng dụng di động\"', 0, ''),
 (659, 180, 'C', '\"C. Một ngôn ngữ định dạng giao diện trang web CSS\"', 0, ''),
 (660, 180, 'D', '\"D. Ứng dụng web hoạt động và cài đặt như ứng dụng di động\"', 1, ''),
-(661, 199, 'A', 's', 1, NULL),
-(662, 199, 'B', 's', 0, NULL),
-(663, 199, 'C', 's', 0, NULL),
-(664, 199, 'D', 's', 0, NULL),
-(665, 200, 'A', 's', 1, NULL),
-(666, 200, 'B', 's', 0, NULL),
-(667, 200, 'C', 's', 0, NULL),
-(668, 200, 'D', 's', 0, NULL),
-(669, 201, 'A', 'ă', 1, NULL),
-(670, 201, 'B', 'â', 0, NULL),
-(671, 201, 'C', 'ê', 0, NULL),
-(672, 201, 'D', 'ô', 0, NULL),
-(673, 202, 'A', 's', 1, NULL),
-(674, 202, 'B', 's', 0, NULL),
-(675, 202, 'C', 's', 0, NULL),
-(676, 202, 'D', 's', 0, NULL),
-(677, 203, 'A', '', 1, NULL),
-(678, 203, 'B', '', 0, NULL),
-(679, 203, 'C', '', 0, NULL),
-(680, 203, 'D', '', 0, NULL),
-(681, 204, 'A', '12', 1, NULL),
-(682, 204, 'B', '2', 0, NULL),
-(683, 204, 'C', '3', 0, NULL),
-(684, 204, 'D', '4', 0, NULL),
-(685, 205, 'A', '1', 1, NULL),
-(686, 205, 'B', '2', 0, NULL),
-(687, 205, 'C', '3', 0, NULL),
-(688, 205, 'D', '4', 0, NULL),
-(689, 206, 'A', 'một', 1, NULL),
-(690, 206, 'B', 'ba', 0, NULL),
-(691, 206, 'C', 'hai', 0, NULL),
-(692, 206, 'D', '4', 0, NULL),
-(693, 207, 'A', '1', 1, NULL),
-(694, 207, 'B', '2', 0, NULL),
-(695, 207, 'C', '3', 0, NULL),
-(696, 207, 'D', '4', 0, NULL),
-(697, 208, 'A', 'A. d', 1, NULL),
-(698, 208, 'B', 'B. d', 0, NULL),
-(699, 208, 'C', 'C. v', 0, NULL),
-(700, 208, 'D', 'D. s', 0, NULL),
-(701, 209, 'A', '1', 1, NULL),
-(702, 209, 'B', '2', 0, NULL),
-(703, 209, 'C', '3', 0, NULL),
-(704, 209, 'D', '4', 0, NULL),
-(705, 210, 'A', 'A. 1', 1, NULL),
-(706, 210, 'B', 'B. 2', 0, NULL),
-(707, 210, 'C', 'C. 3', 0, NULL),
-(708, 210, 'D', 'D. 10000000000000000000000000', 0, NULL),
-(717, 213, 'A', 'A. 1 ', 1, NULL),
-(718, 213, 'B', 'B.  2 ', 0, NULL),
-(719, 213, 'C', 'C. 3 ', 0, NULL),
-(720, 213, 'D', 'D. 4', 0, NULL),
-(721, 214, 'A', 'A. A', 1, NULL),
-(722, 214, 'B', 'B. A1', 0, NULL),
-(723, 214, 'C', 'C. A2', 0, NULL),
-(724, 214, 'D', 'D. A3', 0, NULL),
-(725, 215, 'A', 'A. Có', 1, NULL),
-(726, 215, 'B', 'B. Không', 0, NULL),
-(727, 215, 'C', 'C. KHÔNG', 0, NULL),
-(728, 215, 'D', 'D. KO', 0, NULL),
-(729, 216, 'A', 'A. Có', 1, NULL),
-(730, 216, 'B', 'B. Không', 0, NULL),
-(731, 216, 'C', 'C. KHÔNG', 0, NULL),
-(732, 216, 'D', 'D. Ko', 0, NULL);
+(761, 224, 'A', '', 1, NULL),
+(762, 224, 'B', '', 0, NULL),
+(763, 224, 'C', '', 0, NULL),
+(764, 224, 'D', '', 0, NULL),
+(765, 225, 'A', '', 1, NULL),
+(766, 225, 'B', '', 0, NULL),
+(767, 225, 'C', '', 0, NULL),
+(768, 225, 'D', '', 0, NULL),
+(805, 235, 'A', 'A. 1', 1, NULL),
+(806, 235, 'B', 'B. 2', 0, NULL),
+(807, 235, 'C', 'C. 3', 0, NULL),
+(808, 235, 'D', 'D. 4', 0, NULL),
+(809, 236, 'A', 'A. Có', 0, NULL),
+(810, 236, 'B', 'B. Không', 1, NULL),
+(811, 236, 'C', 'C. Đúng', 0, NULL),
+(812, 236, 'D', 'D. Yes', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -728,15 +670,19 @@ CREATE TABLE `exams` (
   `teacher_id` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `content` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `time` int(11) DEFAULT 90
+  `time` int(11) DEFAULT 90,
+  `pending` tinyint(4) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `exams`
 --
 
-INSERT INTO `exams` (`exam_id`, `exam_code`, `teacher_id`, `created_at`, `content`, `time`) VALUES
-(150, 't01', 9, '2026-05-21 21:38:15', 'test1', 10);
+INSERT INTO `exams` (`exam_id`, `exam_code`, `teacher_id`, `created_at`, `content`, `time`, `pending`) VALUES
+(153, 'DeMot', NULL, '2026-05-23 21:37:10', 'Đề test', 10, 1),
+(167, 'hehe', NULL, '2026-05-27 16:27:10', 'đề 1', 21, 1),
+(168, 'DEMOT1', 35, '2026-05-28 13:16:48', '12', 32, 1),
+(173, 't01', 37, '2026-05-29 15:03:49', 'Noob', 10, 0);
 
 -- --------------------------------------------------------
 
@@ -746,15 +692,18 @@ INSERT INTO `exams` (`exam_id`, `exam_code`, `teacher_id`, `created_at`, `conten
 
 CREATE TABLE `exam_questions` (
   `exam_id` int(11) NOT NULL,
-  `question_id` int(11) NOT NULL
+  `question_id` int(11) NOT NULL,
+  `tag` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `exam_questions`
 --
 
-INSERT INTO `exam_questions` (`exam_id`, `question_id`) VALUES
-(150, 216);
+INSERT INTO `exam_questions` (`exam_id`, `question_id`, `tag`) VALUES
+(167, 224, NULL),
+(167, 225, NULL),
+(168, 235, NULL);
 
 -- --------------------------------------------------------
 
@@ -777,30 +726,7 @@ CREATE TABLE `game_sessions` (
 --
 
 INSERT INTO `game_sessions` (`session_id`, `player_id`, `current_day`, `health`, `mode`, `exam_id`, `ranking`) VALUES
-(73, 4, 2, 20, 0, NULL, 'jobless'),
-(83, 4, 1, 20, 0, NULL, 'jobless'),
-(92, 4, 2, 20, 0, NULL, 'master'),
-(93, 4, 2, 20, 0, NULL, 'master'),
-(95, 4, 2, 20, 0, NULL, 'senior'),
-(96, 4, 2, 20, 0, NULL, 'jobless'),
-(97, 9, 2, 20, 0, NULL, 'jobless'),
-(98, 9, 2, 20, 0, NULL, 'jobless'),
-(99, 9, 1, 20, 0, NULL, 'jobless'),
-(100, 4, 2, 20, 0, NULL, 'jobless'),
-(104, 4, 6, 20, 0, NULL, 'jobless'),
-(105, 9, 2, 20, 0, NULL, 'jobless'),
-(106, 9, 2, 20, 0, NULL, 'jobless'),
-(107, 4, 5, 20, 0, NULL, 'jobless'),
-(109, 9, 4, 20, 0, NULL, 'jobless'),
-(129, 4, 3, 20, 0, NULL, 'jobless'),
-(131, 4, 3, 20, 0, NULL, 'jobless'),
-(147, 4, 1, 20, 0, NULL, 'jobless'),
-(150, 4, 3, 20, 0, NULL, 'jobless'),
-(151, 4, 1, 20, 0, NULL, NULL),
-(153, 4, 2, 20, 0, NULL, 'jobless'),
-(155, 4, 1, 20, 0, NULL, 'jobless'),
-(159, 14, 1, 20, 0, 150, NULL),
-(160, 14, 31, 20, 1, 150, 'master');
+(186, 36, 1, 20, 0, NULL, 'jobless');
 
 -- --------------------------------------------------------
 
@@ -823,205 +749,8 @@ CREATE TABLE `history_answers` (
 --
 
 INSERT INTO `history_answers` (`id`, `session_id`, `question_id`, `answer_id`, `is_correct`, `day`, `exam_id`) VALUES
-(172, 73, 49, 174, 0, 1, NULL),
-(173, 73, 28, 91, 0, 1, NULL),
-(174, 73, 49, 176, 0, 2, NULL),
-(175, 73, 28, 91, 0, 2, NULL),
-(177, 83, 36, 122, 0, 1, NULL),
-(178, 83, 57, 206, 0, 1, NULL),
-(179, 92, 31, 103, 1, 1, NULL),
-(180, 92, 18, 50, 1, 1, NULL),
-(181, 93, 38, 130, 1, 1, NULL),
-(182, 93, 31, 102, 0, 1, NULL),
-(186, 95, 38, 130, 1, 1, NULL),
-(187, 95, 33, 110, 0, 1, NULL),
-(188, 96, 58, 209, 0, 1, NULL),
-(189, 96, 17, 48, 0, 1, NULL),
-(190, 96, 49, 173, 1, 2, NULL),
-(191, 96, 28, 89, 0, 2, NULL),
-(192, 97, 74, 255, 0, 1, NULL),
-(193, 97, 56, 203, 0, 1, NULL),
-(194, 98, 74, 253, 0, 1, NULL),
-(195, 98, 56, 204, 1, 1, NULL),
-(196, 99, 74, 255, 0, 1, NULL),
-(197, 99, 56, 204, 1, 1, NULL),
-(198, 100, 56, 203, 0, 1, NULL),
-(199, 100, 74, 253, 0, 1, NULL),
-(202, 104, 25, 80, 0, 2, NULL),
-(203, 104, 45, 158, 0, 3, NULL),
-(204, 104, 24, 74, 0, 4, NULL),
-(205, 104, 29, 95, 0, 4, NULL),
-(206, 104, 18, 50, 1, 5, NULL),
-(207, 104, 53, 191, 0, 5, NULL),
-(208, 105, 56, 202, 0, 1, NULL),
-(209, 105, 74, 255, 0, 1, NULL),
-(210, 106, 74, 254, 1, 1, NULL),
-(211, 106, 56, 203, 0, 1, NULL),
-(212, 107, 38, 131, 0, 1, NULL),
-(213, 107, 46, 163, 0, 2, NULL),
-(214, 107, 29, 96, 0, 3, NULL),
-(215, 107, 38, 130, 1, 4, NULL),
-(216, 107, 59, 215, 1, 4, NULL),
-(217, 109, 56, 203, 0, 1, NULL),
-(218, 109, 74, 255, 0, 2, NULL),
-(219, 109, 74, 254, 1, 3, NULL),
-(220, 109, 56, 202, 0, 3, NULL),
-(221, 109, 74, 253, 0, 4, NULL),
-(235, 129, 50, 178, 1, 1, NULL),
-(236, 129, 104, 375, 0, 2, NULL),
-(237, 129, 11, 24, 0, 2, NULL),
-(238, 129, 16, 43, 0, 2, NULL),
-(239, 129, 11, 22, 0, 3, NULL),
-(240, 129, 16, 43, 0, 3, NULL),
-(241, 129, 131, 462, 0, 2, NULL),
-(242, 131, 45, 157, 1, 1, NULL),
-(243, 131, 22, 65, 0, 1, NULL),
-(244, 131, 46, 163, 0, 2, NULL),
-(245, 131, 17, 46, 0, 2, NULL),
-(246, 131, 46, 162, 1, 3, NULL),
-(247, 131, 17, 45, 1, 3, NULL),
-(337, 147, 31, 101, 0, 1, NULL),
-(338, 150, 56, 203, 0, 1, NULL),
-(339, 150, 74, 254, 1, 2, NULL),
-(340, 150, 213, 718, 0, 3, NULL),
-(341, 151, 56, 203, 0, 1, NULL),
-(342, 151, 213, 718, 0, 2, NULL),
-(343, 151, 74, 256, 0, 2, NULL),
-(346, 153, 213, 720, 0, 1, NULL),
-(347, 153, 56, 201, 0, 2, NULL),
-(348, 153, 74, 254, 1, 2, NULL),
-(351, 155, 214, 721, 1, 1, NULL),
-(405, 159, 216, 729, 1, 1, 150),
-(406, 159, 216, 729, 1, 1, 150),
-(407, 159, 216, 729, 1, 2, 150),
-(408, 159, 216, 729, 1, 2, 150),
-(409, 159, 216, 729, 1, 3, 150),
-(410, 159, 216, 729, 1, 3, 150),
-(411, 159, 216, 729, 1, 4, 150),
-(412, 159, 216, 729, 1, 4, 150),
-(413, 159, 216, 729, 1, 5, 150),
-(414, 159, 216, 729, 1, 5, 150),
-(415, 159, 216, 729, 1, 5, 150),
-(416, 159, 216, 729, 1, 5, 150),
-(417, 159, 216, 729, 1, 6, 150),
-(418, 159, 216, 729, 1, 6, 150),
-(419, 159, 216, 729, 1, 6, 150),
-(420, 159, 216, 729, 1, 6, 150),
-(421, 159, 216, 732, 0, 6, 150),
-(422, 159, 216, 729, 1, 7, 150),
-(423, 159, 216, 729, 1, 7, 150),
-(424, 159, 216, 729, 1, 7, 150),
-(425, 159, 216, 729, 1, 8, 150),
-(426, 159, 216, 729, 1, 8, 150),
-(427, 159, 216, 729, 1, 8, 150),
-(428, 159, 216, 729, 1, 8, 150),
-(429, 159, 216, 729, 1, 8, 150),
-(430, 159, 216, 729, 1, 9, 150),
-(431, 159, 216, 729, 1, 9, 150),
-(432, 159, 216, 729, 1, 9, 150),
-(433, 159, 216, 729, 1, 9, 150),
-(434, 159, 216, 729, 1, 10, 150),
-(435, 159, 216, 729, 1, 17, 150),
-(436, 159, 216, 729, 1, 17, 150),
-(437, 159, 216, 729, 1, 19, 150),
-(438, 159, 216, 729, 1, 20, 150),
-(439, 159, 216, 729, 1, 24, 150),
-(440, 159, 216, 729, 1, 24, 150),
-(441, 159, 216, 729, 1, 25, 150),
-(442, 159, 216, 729, 1, 25, 150),
-(443, 159, 216, 729, 1, 26, 150),
-(444, 159, 216, 729, 1, 26, 150),
-(445, 159, 216, 729, 1, 26, 150),
-(446, 159, 216, 729, 1, 29, 150),
-(447, 159, 216, 732, 0, 29, 150),
-(448, 159, 216, 729, 1, 30, 150),
-(449, 160, 216, 730, 0, 1, 150),
-(450, 160, 216, 730, 0, 1, 150),
-(451, 160, 216, 729, 1, 2, 150),
-(452, 160, 216, 729, 1, 2, 150),
-(453, 160, 216, 729, 1, 3, 150),
-(454, 160, 216, 729, 1, 3, 150),
-(455, 160, 216, 729, 1, 4, 150),
-(456, 160, 216, 729, 1, 4, 150),
-(457, 160, 216, 729, 1, 4, 150),
-(458, 160, 216, 729, 1, 5, 150),
-(459, 160, 216, 729, 1, 5, 150),
-(460, 160, 216, 729, 1, 5, 150),
-(461, 160, 216, 729, 1, 5, 150),
-(462, 160, 216, 729, 1, 6, 150),
-(463, 160, 216, 729, 1, 6, 150),
-(464, 160, 216, 729, 1, 6, 150),
-(465, 160, 216, 729, 1, 7, 150),
-(466, 160, 216, 729, 1, 7, 150),
-(467, 160, 216, 729, 1, 7, 150),
-(468, 160, 216, 729, 1, 7, 150),
-(469, 160, 216, 729, 1, 8, 150),
-(470, 160, 216, 729, 1, 8, 150),
-(471, 160, 216, 729, 1, 8, 150),
-(472, 160, 216, 729, 1, 8, 150),
-(473, 160, 216, 729, 1, 8, 150),
-(474, 160, 216, 729, 1, 9, 150),
-(475, 160, 216, 729, 1, 9, 150),
-(476, 160, 216, 729, 1, 9, 150),
-(477, 160, 216, 729, 1, 9, 150),
-(478, 160, 216, 729, 1, 10, 150),
-(479, 160, 216, 729, 1, 11, 150),
-(480, 160, 216, 729, 1, 11, 150),
-(481, 160, 216, 729, 1, 12, 150),
-(482, 160, 216, 729, 1, 12, 150),
-(483, 160, 216, 729, 1, 12, 150),
-(484, 160, 216, 729, 1, 13, 150),
-(485, 160, 216, 729, 1, 14, 150),
-(486, 160, 216, 729, 1, 14, 150),
-(487, 160, 216, 729, 1, 14, 150),
-(488, 160, 216, 729, 1, 15, 150),
-(489, 160, 216, 729, 1, 15, 150),
-(490, 160, 216, 729, 1, 15, 150),
-(491, 160, 216, 729, 1, 15, 150),
-(492, 160, 216, 732, 0, 15, 150),
-(493, 160, 216, 729, 1, 16, 150),
-(494, 160, 216, 729, 1, 16, 150),
-(495, 160, 216, 729, 1, 16, 150),
-(496, 160, 216, 729, 1, 16, 150),
-(497, 160, 216, 729, 1, 17, 150),
-(498, 160, 216, 729, 1, 17, 150),
-(499, 160, 216, 729, 1, 17, 150),
-(500, 160, 216, 729, 1, 17, 150),
-(501, 160, 216, 729, 1, 17, 150),
-(502, 160, 216, 729, 1, 20, 150),
-(503, 160, 216, 729, 1, 21, 150),
-(504, 160, 216, 729, 1, 21, 150),
-(505, 160, 216, 729, 1, 22, 150),
-(506, 160, 216, 732, 0, 22, 150),
-(507, 160, 216, 729, 1, 23, 150),
-(508, 160, 216, 729, 1, 23, 150),
-(509, 160, 216, 729, 1, 23, 150),
-(510, 160, 216, 729, 1, 24, 150),
-(511, 160, 216, 729, 1, 24, 150),
-(512, 160, 216, 729, 1, 24, 150),
-(513, 160, 216, 729, 1, 25, 150),
-(514, 160, 216, 729, 1, 25, 150),
-(515, 160, 216, 732, 0, 25, 150),
-(516, 160, 216, 729, 1, 25, 150),
-(517, 160, 216, 729, 1, 26, 150),
-(518, 160, 216, 729, 1, 26, 150),
-(519, 160, 216, 729, 1, 26, 150),
-(520, 160, 216, 729, 1, 26, 150),
-(521, 160, 216, 729, 1, 27, 150),
-(522, 160, 216, 729, 1, 27, 150),
-(523, 160, 216, 729, 1, 27, 150),
-(524, 160, 216, 729, 1, 27, 150),
-(525, 160, 216, 729, 1, 28, 150),
-(526, 160, 216, 729, 1, 28, 150),
-(527, 160, 216, 729, 1, 28, 150),
-(528, 160, 216, 729, 1, 28, 150),
-(529, 160, 216, 729, 1, 28, 150),
-(530, 160, 216, 729, 1, 29, 150),
-(531, 160, 216, 729, 1, 29, 150),
-(532, 160, 216, 729, 1, 29, 150),
-(533, 160, 216, 732, 0, 29, 150),
-(534, 160, 216, 729, 1, 29, 150),
-(535, 160, 216, 729, 1, 30, 150);
+(388, 186, 34, 116, 0, 1, NULL),
+(389, 186, 44, 155, 0, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -1031,24 +760,25 @@ INSERT INTO `history_answers` (`id`, `session_id`, `question_id`, `answer_id`, `
 
 CREATE TABLE `players` (
   `id` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `email` varchar(100) NOT NULL,
+  `google_id` varchar(100) NOT NULL,
   `role` tinyint(4) DEFAULT 0,
   `created_at` datetime DEFAULT current_timestamp(),
-  `status` tinyint(2) DEFAULT 1
+  `status` tinyint(2) DEFAULT 1,
+  `pending` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `players`
 --
 
-INSERT INTO `players` (`id`, `username`, `password`, `role`, `created_at`, `status`) VALUES
-(4, 'khai', '$2y$10$jU3.yQ9dpqpg1uglvnwqS.OShUJ8.z6Ol3zy.HHN3KHg.MUE3103i', 0, '2026-04-27 17:03:56', 1),
-(7, 'khaine', '$2y$10$2lbSJj2a9xpb6DnPm88SZeQZPkj1vsCOPVIcni2j2bguAbkrsK9/q', 2, '2026-04-27 17:41:39', 1),
-(9, 'Lamteacher', '$2y$10$mrpkkKMQdpS1WzSQMAtZQODR/Cq.aqQLH5OYMN6ZaDfhyqAq8iW4q', 1, '2026-05-16 15:23:52', 1),
-(12, 'khaiiii', '$2y$10$6h5WAcde6d6Xl9ijApej3e5MZQIGPhlfgy4VKGszJm.Fbtfze8bVG', 0, '2026-05-18 13:16:31', 1),
-(14, 'Lamle', '$2y$10$fLo4UgfO4Ov47p1dq8Vcx.bkfj1DnYh72bFznoEFWIOZSHZumaosG', 0, '2026-05-21 21:30:42', 1),
-(15, 'Khaiteacher', '$2y$10$ZSRvP8yYZYXIzJdQ.nnG2.R6VJKQnG0P5vbN5aexz7UMTxrACL59G', 1, '2026-05-21 21:41:27', 1);
+INSERT INTO `players` (`id`, `username`, `email`, `google_id`, `role`, `created_at`, `status`, `pending`) VALUES
+(30, 'chongkhai2006', 'chongkhai2006@gmail.com', '100199511211976462494', 2, '2026-05-26 09:03:39', 1, 1),
+(34, 'vokhaihc211', 'vokhaihc211@gmail.com', '103268582652719735787', 0, '2026-05-28 13:09:40', 1, 1),
+(35, 'khai4751050127', 'khai4751050127@st.qnu.edu.vn', '110212220843789068402', 1, '2026-05-28 13:14:06', 1, 1),
+(36, 'lqd.tik23.lengoclam', 'lqd.tik23.lengoclam@gmail.com', '100844322681123737494', 0, '2026-05-29 14:35:15', 1, 1),
+(37, 'lam4751050156', 'lam4751050156@st.qnu.edu.vn', '100393405040168746839', 1, '2026-05-29 14:47:35', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1171,11 +901,6 @@ INSERT INTO `questions` (`question_id`, `content`, `type`, `created_by`, `tag`, 
 (118, '\"Câu 118: Những tiêu chuẩn cốt lõi nào dùng để đánh giá một trang web có khả năng Responsive (thích ứng) tốt trên thiết bị?\"', 0, NULL, 1, 1, '0000-00-00 00:00:00'),
 (119, '\"Câu 119: Cách ứng dụng Media Query trong CSS để thay đổi giao diện linh hoạt theo từng kích thước màn hình cụ thể?\"', 0, NULL, 1, 1, '0000-00-00 00:00:00'),
 (120, '\"Câu 120: Làm thế nào để kiểm soát thứ tự hiển thị của các phần tử đè lên nhau bằng thuộc tính lớp z-index?\"', 0, NULL, 1, 1, '0000-00-00 00:00:00'),
-(126, '\"Câu 126: Trong mô hình Flexbox, thuộc tính align-items được sử dụng để căn chỉnh các phần tử con theo trục ngang (trục chính).\"', 1, NULL, 2, 1, '0000-00-00 00:00:00'),
-(127, '\"Câu 127: Thuộc tính justify-content giúp phân bổ không gian và căn chỉnh các phần tử con theo trục chính (thường là trục ngang) trong Flexbox.\"', 1, NULL, 2, 1, '0000-00-00 00:00:00'),
-(128, '\"Câu 128: Thuộc tính overflow: hidden có tác dụng hiển thị toàn bộ nội dung của phần tử kể cả khi nội dung đó vượt quá kích thước khung chứa.\"', 1, NULL, 2, 1, '0000-00-00 00:00:00'),
-(129, '\"Câu 129: Thư viện PDO (PHP Data Objects) cung cấp một lớp kết nối an toàn và hỗ trợ giao tiếp với nhiều hệ quản trị cơ sở dữ liệu khác nhau trong PHP.\"', 1, NULL, 2, 1, '0000-00-00 00:00:00'),
-(130, '\"Câu 130: SQL Injection là một kỹ thuật lập trình an toàn giúp tăng tốc độ truy vấn dữ liệu từ máy chủ một cách hiệu quả.\"', 1, NULL, 2, 1, '0000-00-00 00:00:00'),
 (131, '\"Câu 131: Cách thức chuyển đổi một chuỗi văn bản dài thành một mảng các phần tử riêng biệt thông qua hàm explode()?\"', 0, NULL, 2, 1, '0000-00-00 00:00:00'),
 (132, '\"Câu 132: Phân tích mức độ nguy hiểm của lỗ hổng bảo mật SQL Injection đối với việc rò rỉ và mất mát dữ liệu người dùng?\"', 0, NULL, 2, 1, '0000-00-00 00:00:00'),
 (133, '\"Câu 133: Cơ chế hoạt động của cuộc tấn công XSS (Cross-Site Scripting) khi tin tặc chèn mã độc vào hệ thống trang web?\"', 0, NULL, 2, 1, '0000-00-00 00:00:00'),
@@ -1226,22 +951,10 @@ INSERT INTO `questions` (`question_id`, `content`, `type`, `created_by`, `tag`, 
 (178, '\"Câu 178: Hiện tượng \"Memory leak\" trong ứng dụng và những tác động tiêu cực của nó đến hiệu năng và tài nguyên bộ nhớ RAM?\"', 0, NULL, 2, 1, '0000-00-00 00:00:00'),
 (179, '\"Câu 179: Tại sao các hệ thống kiến trúc REST API hiện đại lại ưu tiên tuyệt đối việc sử dụng giao thức truyền tải HTTP?\"', 0, NULL, 2, 1, '0000-00-00 00:00:00'),
 (180, '\"Câu 180: Những đặc tính kỹ thuật vượt trội nào khiến ứng dụng PWA trở thành xu hướng mới trong trải nghiệm web di động hiện nay?\"', 0, NULL, 2, 1, '0000-00-00 00:00:00'),
-(199, 's', 1, 4, 0, 1, NULL),
-(200, 'sââ', 1, 4, 1, 1, NULL),
-(201, 'heloloooo may e', 1, 4, 1, 1, NULL),
-(202, 'as', 1, 4, 2, 1, NULL),
-(203, '', 1, 4, 0, 1, NULL),
-(204, 'Câu 1 thêm test', 1, 4, 1, 1, NULL),
-(205, 'Một ngày phát ăn mấy cục cức', 1, 4, 0, 1, NULL),
-(206, 'Phát táp c', 1, 4, 0, 1, NULL),
-(207, 'Phát táp cức mấy ngày 1 cử', 1, 4, 0, 1, NULL),
-(208, 'sdasd', 1, 4, 0, 1, NULL),
-(209, 'Phát ăn cu', 1, 4, 1, 1, NULL),
-(210, 'Ngày nay thằng Phát ăn mấy con cu', 1, 4, 2, 1, NULL),
-(213, 'tét 2', 1, 9, 1, 0, NULL),
-(214, 'Lamle Test', 1, 9, 0, 0, NULL),
-(215, 'Lamle đẹp trai', 1, 9, 0, 1, NULL),
-(216, 'Lamle siêu cấp đẹp trai', 1, 9, 0, 1, NULL);
+(224, '', 1, NULL, 1, 0, NULL),
+(225, '', 1, NULL, 2, 0, NULL),
+(235, 'hello', 1, 35, 0, 1, NULL),
+(236, 'Is Lamle noob', 1, 37, 0, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -1262,9 +975,7 @@ CREATE TABLE `summary_status` (
 --
 
 INSERT INTO `summary_status` (`player_id`, `total_games`, `best_score`, `longest_survival`, `wrong_answers`) VALUES
-(4, 62, 100, 6, 74),
-(9, 6, 50, 4, 11),
-(14, 5, 95, 31, 8);
+(36, 1, 0, 1, 2);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -1338,37 +1049,37 @@ ALTER TABLE `summary_status`
 -- AUTO_INCREMENT cho bảng `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=733;
+  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=817;
 
 --
 -- AUTO_INCREMENT cho bảng `exams`
 --
 ALTER TABLE `exams`
-  MODIFY `exam_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+  MODIFY `exam_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
 
 --
 -- AUTO_INCREMENT cho bảng `game_sessions`
 --
 ALTER TABLE `game_sessions`
-  MODIFY `session_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
+  MODIFY `session_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=187;
 
 --
 -- AUTO_INCREMENT cho bảng `history_answers`
 --
 ALTER TABLE `history_answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=536;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=390;
 
 --
 -- AUTO_INCREMENT cho bảng `players`
 --
 ALTER TABLE `players`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT cho bảng `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=217;
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=238;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

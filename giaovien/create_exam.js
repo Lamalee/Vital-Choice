@@ -32,15 +32,20 @@ function resetContent() {
   }
 }
 async function addQuestion() {
+  if(selectQuestionId) {
+    showErrorModal("Câu hỏi đã tồn tại.");
+    return null;
+  }
   let question = document.getElementById("question").value;
   let ansA = document.getElementById("AnswerA").value;
   let ansB = document.getElementById("AnswerB").value;
   let ansC = document.getElementById("AnswerC").value;
   let ansD = document.getElementById("AnswerD").value;
-  let tag = document.querySelector('input[name="tag"]:checked').value;
+  let tag = document.querySelector('input[name="tag"]:checked')?.value??"null";
   let correct = document.querySelector(
     'input[name="correct_answer"]:checked',
   ).value;
+  
   let formData = new FormData();
   formData.append("content", question);
   formData.append("created_by", CURRENT_USER_ID);
@@ -50,6 +55,17 @@ async function addQuestion() {
   formData.append("ansC", "C. " + ansC);
   formData.append("ansD", "D. " + ansD);
   formData.append("correct", correct);
+  if (
+    !formData.get("content") ||
+    !formData.get("ansA") ||
+    !formData.get("ansB") ||
+    !formData.get("ansC") ||
+    !formData.get("ansD") ||
+    formData.get("tag") == "null"
+  ) {
+    showErrorModal("Vui lòng điền đầy đủ thông tin câu hỏi, đáp án và loại câu hỏi.");
+    return;
+  }
   try {
     const response = await fetch("../api/add_question.php", {
       method: "POST",
@@ -70,15 +86,34 @@ async function addQuestion() {
   }
 }
 
-function saveAndExit() {
-  window.location.href = "thuviengiaovien.php";
+async function saveAndExit() {
+  let formDataLink = new FormData();
+  formDataLink.append("exam_id", CURRENT_EXAM_ID);
+  try {
+    const response = await fetch("../api/check_new_exam.php", {
+      method: "POST",
+      body: formDataLink,
+    });
+    const result = await response.json();
+    if (result.success) {
+      window.location.href = "thuviengiaovien.php";
+    } else {
+      showErrorModal(result.message);
+      console.log("Lỗi: ", result.message);
+    }
+  } catch (error) {
+    console.error("Lỗi kết nối:", error);
+  }
+  
 }
 async function addQuestionInExam() {
   let newID = await addQuestion();
   if (!newID) return;
+  await loadQuestionDetails(newID);
   let formDataLink = new FormData();
   formDataLink.append("exam_id", CURRENT_EXAM_ID);
   formDataLink.append("question_id", newID);
+  formDataLink.append("question_tag", document.querySelector('input[name="tag"]:checked').value);
   try {
     const response = await fetch("../api/add_question_to_exam.php", {
       method: "POST",
@@ -86,6 +121,7 @@ async function addQuestionInExam() {
     });
     const result = await response.json();
     if (result.success) {
+      resetContent();
       showErrorModal("Đã thêm câu hỏi vào đề thi thành công!");
       loadQuestions(currentPage);
     } else {
@@ -161,6 +197,8 @@ async function toggleQuestion(checkbox, questionId) {
   const formData = new FormData();
   formData.append("exam_id", CURRENT_EXAM_ID);
   formData.append("question_id", questionId);
+  await loadQuestionDetails(questionId);
+  formData.append("tag", document.querySelector('input[name="tag"]:checked').value);
   formData.append("action", action);
   const response = await fetch("../api/toggle_question.php", {
     method: "POST",
@@ -249,6 +287,7 @@ async function deleteQuestion(questionId) {
     });
     const result = await response.json();
     if (result.success) {
+      resetContent();
       loadQuestions(currentPage);
     } else {
       showErrorModal("Lỗi xóa câu hỏi: " + result.message);
@@ -332,10 +371,10 @@ async function updateQuestion() {
     "tag",
     document.querySelector('input[name="tag"]:checked').value,
   );
-  formData.append("ansA", "A. " + document.getElementById("AnswerA").value);
-  formData.append("ansB", "B. " + document.getElementById("AnswerB").value);
-  formData.append("ansC", "C. " + document.getElementById("AnswerC").value);
-  formData.append("ansD", "D. " + document.getElementById("AnswerD").value);
+  formData.append("ansA", document.getElementById("AnswerA").value);
+  formData.append("ansB", document.getElementById("AnswerB").value);
+  formData.append("ansC", document.getElementById("AnswerC").value);
+  formData.append("ansD", document.getElementById("AnswerD").value);
   formData.append(
     "correct",
     document.querySelector('input[name="correct_answer"]:checked').value,
