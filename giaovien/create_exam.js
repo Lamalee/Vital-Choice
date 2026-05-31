@@ -32,7 +32,7 @@ function resetContent() {
   }
 }
 async function addQuestion() {
-  if(selectQuestionId) {
+  if (selectQuestionId) {
     showErrorModal("Câu hỏi đã tồn tại.");
     return null;
   }
@@ -41,11 +41,12 @@ async function addQuestion() {
   let ansB = document.getElementById("AnswerB").value;
   let ansC = document.getElementById("AnswerC").value;
   let ansD = document.getElementById("AnswerD").value;
-  let tag = document.querySelector('input[name="tag"]:checked')?.value??"null";
+  let tag =
+    document.querySelector('input[name="tag"]:checked')?.value ?? "null";
   let correct = document.querySelector(
     'input[name="correct_answer"]:checked',
   ).value;
-  
+
   let formData = new FormData();
   formData.append("content", question);
   formData.append("created_by", CURRENT_USER_ID);
@@ -63,7 +64,9 @@ async function addQuestion() {
     !formData.get("ansD") ||
     formData.get("tag") == "null"
   ) {
-    showErrorModal("Vui lòng điền đầy đủ thông tin câu hỏi, đáp án và loại câu hỏi.");
+    showErrorModal(
+      "Vui lòng điền đầy đủ thông tin câu hỏi, đáp án và loại câu hỏi.",
+    );
     return;
   }
   try {
@@ -104,7 +107,6 @@ async function saveAndExit() {
   } catch (error) {
     console.error("Lỗi kết nối:", error);
   }
-  
 }
 async function addQuestionInExam() {
   let newID = await addQuestion();
@@ -113,7 +115,10 @@ async function addQuestionInExam() {
   let formDataLink = new FormData();
   formDataLink.append("exam_id", CURRENT_EXAM_ID);
   formDataLink.append("question_id", newID);
-  formDataLink.append("question_tag", document.querySelector('input[name="tag"]:checked').value);
+  formDataLink.append(
+    "question_tag",
+    document.querySelector('input[name="tag"]:checked').value,
+  );
   try {
     const response = await fetch("../api/add_question_to_exam.php", {
       method: "POST",
@@ -132,18 +137,7 @@ async function addQuestionInExam() {
     console.error("Lỗi kết nối:", error);
   }
 }
-let currentPage = 1;
-async function loadQuestions(page = 1) {
-  currentPage = page;
-  const formData = new FormData();
-  formData.append("exam_id", CURRENT_EXAM_ID);
-  formData.append("created_by", CURRENT_USER_ID);
-  formData.append("page", page);
-  const response = await fetch("../api/create_exam_get_Q.php", {
-    method: "POST",
-    body: formData,
-  });
-  const data = await response.json();
+function renderQuestionList(data) {
   const listContainer = document.getElementById("questionList");
   listContainer.innerHTML = "";
 
@@ -169,7 +163,6 @@ async function loadQuestions(page = 1) {
       }
     });
 
-    // Add right-click context menu
     div.addEventListener("contextmenu", (e) => {
       e.preventDefault();
       showDeleteConfirmation(q.question_id, q.content);
@@ -178,19 +171,45 @@ async function loadQuestions(page = 1) {
     const qText = document.createElement("div");
     qText.className = "q-text";
     qText.innerText = q.content;
+
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
+
     if (q.is_selected == 1) {
       checkbox.checked = true;
     }
+
     checkbox.onchange = function () {
       toggleQuestion(checkbox, q.question_id);
     };
+
     div.appendChild(qText);
     div.appendChild(checkbox);
+
     listContainer.appendChild(div);
   });
-  renderPagination(data.total_pages, data.current_page);
+
+  if (data.total_pages) {
+    renderPagination(data.total_pages, data.current_page);
+  }
+}
+let currentPage = 1;
+async function loadQuestions(page = 1) {
+  currentPage = page;
+
+  const formData = new FormData();
+  formData.append("exam_id", CURRENT_EXAM_ID);
+  formData.append("created_by", CURRENT_USER_ID);
+  formData.append("page", page);
+
+  const response = await fetch("../api/create_exam_get_Q.php", {
+    method: "POST",
+    body: formData,
+  });
+
+  const data = await response.json();
+
+  renderQuestionList(data);
 }
 async function toggleQuestion(checkbox, questionId) {
   const action = checkbox.checked ? "add" : "remove";
@@ -198,7 +217,10 @@ async function toggleQuestion(checkbox, questionId) {
   formData.append("exam_id", CURRENT_EXAM_ID);
   formData.append("question_id", questionId);
   await loadQuestionDetails(questionId);
-  formData.append("tag", document.querySelector('input[name="tag"]:checked').value);
+  formData.append(
+    "tag",
+    document.querySelector('input[name="tag"]:checked').value,
+  );
   formData.append("action", action);
   const response = await fetch("../api/toggle_question.php", {
     method: "POST",
@@ -404,5 +426,61 @@ async function updateQuestion() {
   } catch (error) {
     console.error("Lỗi kết nối:", error);
     showErrorModal("Không thể cập nhật câu hỏi");
+  }
+}
+document
+  .getElementById("difficultFilter")
+  .addEventListener("change", async function () {
+    const difficulty = this.value;
+
+    if (difficulty === "3") {
+      loadQuestions(currentPage);
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("exam_id", CURRENT_EXAM_ID);
+    formData.append("created_by", CURRENT_USER_ID);
+    formData.append("difficulty", difficulty);
+
+    try {
+      const response = await fetch("../api/search_questions.php", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      renderQuestionList(data);
+    } catch (error) {
+      console.error(error);
+      showErrorModal("Không thể lọc câu hỏi");
+    }
+  });
+async function search_questions() {
+  const keyword = document.getElementById("searchInput").value.trim();
+
+  if (keyword === "3") {
+    loadQuestions(currentPage);
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("exam_id", CURRENT_EXAM_ID);
+  formData.append("created_by", CURRENT_USER_ID);
+  formData.append("keyword", keyword);
+
+  try {
+    const response = await fetch("../api/search_questions.php", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    renderQuestionList(data);
+  } catch (error) {
+    console.error(error);
+    showErrorModal("Không thể tìm kiếm câu hỏi");
   }
 }

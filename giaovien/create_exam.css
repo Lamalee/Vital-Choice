@@ -427,3 +427,21 @@ input[type="checkbox"]:checked::after {
   font-weight: bold;
   font-size: 14px;
 }
+#searchBtn {
+  width: 100px;
+}
+#difficultFilter,
+#searchInput {
+  height: 35px;
+  border-radius: 8px;
+  background: white;
+  color: #000000;
+  border: 1px solid #3a3a3a;
+  transition: all 0.3s ease;
+}
+.searchQuestion {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
