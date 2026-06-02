@@ -75,7 +75,18 @@ $id = $_SESSION['id'];
           <button id="updateQuestion" onclick="updateQuestion()">Cập nhật câu hỏi</button>
           <button id="exitBtn" onclick="saveAndExit()" style="background-color: #f44336; color: white;">Lưu và Thoát</button>
         </div> 
-      </div> <div class="container_listQuestion">
+        <div class="searchQuestion">
+           <select id="difficultFilter">
+            <option value="3">Tất cả </option>
+            <option value="0">Dễ</option>
+            <option value="1">Trung bình</option>
+            <option value="2">Khó</option>
+          </select>
+          <input type="text" id="searchInput" placeholder="Tìm kiếm câu hỏi..."/>
+          <button id ="searchBtn" onclick="search_questions()">Tìm kiếm</button>
+      </div>
+      </div>
+       <div class="container_listQuestion">
           <div id="questionList"></div>
           <div id="pagination"></div>
       </div>
