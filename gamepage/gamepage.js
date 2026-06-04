@@ -155,7 +155,7 @@ function Ranking() {
 function watchResult() {
   window.location.href = "../tongket/Tongket1.php";
 }
-function Win() {
+async function Win() {
   setCharacterImage("rescued");
   gameOver = true;
   clearInterval(time_dif);
@@ -164,13 +164,13 @@ function Win() {
   formData2.append("hp", hp);
   formData2.append("day", day);
   formData2.append("rank", rank);
-  fetch("../api/update_session.php", { method: "POST", body: formData2 });
+  await fetch("../api/update_session.php", { method: "POST", body: formData2 });
   const formData = new FormData();
   formData.append("day", day);
-  fetch("../api/end_game.php", { method: "POST", body: formData });
+  await fetch("../api/end_game.php", { method: "POST", body: formData });
   document.getElementById("winPopup").style.display = "flex";
 }
-function Lose() {
+async function Lose() {
   setCharacterImage("dead");
   gameOver = true;
   clearInterval(time_dif);
@@ -178,10 +178,10 @@ function Lose() {
   formData2.append("hp", hp);
   formData2.append("day", day);
   formData2.append("rank", rank);
-  fetch("../api/update_session.php", { method: "POST", body: formData2 });
+  await fetch("../api/update_session.php", { method: "POST", body: formData2 });
   const formData = new FormData();
   formData.append("day", day);
-  fetch("../api/end_game.php", { method: "POST", body: formData });
+  await fetch("../api/end_game.php", { method: "POST", body: formData });
   document.getElementById("losePopup").style.display = "flex";
 }
 function renderQuestion(data) {
