@@ -1,3 +1,34 @@
+<?php
+session_start();
+if (isset($_COOKIE['remember_login'])) {
+    $data = json_decode($_COOKIE['remember_login'], true);
+    if ($data && isset($data['time'], $data['id'], $data['role'])) {
+
+        if (time() - $data['time'] <= 1800) {
+            $_SESSION['id'] = $data['id'];
+            $_SESSION['username'] = $data['username'];
+            $_SESSION['role'] = $data['role'];
+            if ($data['role'] == 2) {
+                header("Location: ../admin/admin.php");
+            } else if ($data['role'] == 1) {
+                header("Location: ../giaovien/Teacherpage.php");
+            } else {
+                header("Location: ../mainpage/mainpage2.php");
+            }
+            exit;
+        } else {
+            setcookie("remember_login", "", time() - 3600, "/");
+            session_unset();
+            session_destroy();
+        }
+
+    } else {
+        setcookie("remember_login", "", time() - 3600, "/");
+        session_unset();
+        session_destroy();
+    }
+}
+?>
 <!doctype html>
 <html lang="vi">
 <head>
