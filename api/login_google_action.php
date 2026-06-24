@@ -17,51 +17,33 @@ $CLIENT_ID = "63291630669-bu4mcmmm96dcniruhg83j8g9r3l6mdou.apps.googleuserconten
 $client = new Google_Client(['client_id' => $CLIENT_ID]);
 
 try {
-    // Xác thực mã token với Google
     $payload = $client->verifyIdToken($id_token);
     
     if ($payload) {
         $google_id = $payload['sub']; 
         $email = $payload['email'];
         $name = $payload['name'];
-
-        // 1. Kiểm tra tài khoản xem đã tồn tại dựa vào google_id chưa
         $stmt = $conn->prepare("SELECT * FROM players WHERE google_id = ? LIMIT 1");
         $stmt->bind_param("s", $google_id);
         $stmt->execute();
         $result = $stmt->get_result();
-
         $isNewUser = false;
-
         if ($result->num_rows > 0) {
-            // ---- TRƯỜNG HỢP ĐÃ CÓ TÀI KHOẢN (ĐĂNG NHẬP) ----
             $row = $result->fetch_assoc();
-            
-            // Check xem tài khoản có bị BAN không
             if ($row['status'] == 0) {
                 echo json_encode(['success' => false, 'error_type' => 'banned']);
                 exit;
             }
-            
-            // Check xem tài khoản có đang chờ duyệt không
             if ($row['pending'] == 0) {
                 echo json_encode(['success' => false, 'error_type' => 'pending']);
                 exit;
             }
-
-            // Lấy thông tin user hiện tại để gán session
             $user_id = $row['id'];
             $username = $row['username'];
             $role = $row['role'];
 
         } else {
-            // ---- TRƯỜNG HỢP CHƯA CÓ TÀI KHOẢN (TỰ ĐỘNG ĐĂNG KÝ) ----
-            // Tách phần trước chữ @ của email làm username hiển thị mặc định
             $username = explode('@', $email)[0]; 
-            
-            // --- LOGIC CHECK ĐUÔI EMAIL ĐỂ XÁC ĐỊNH ROLE ---
-            // Kiểm tra xem email có chứa đuôi dành cho sinh viên trường Quy Nhơn không
-            // Mình check cả 2 kiểu viết phòng trường hợp bạn gõ nhầm: @st.qnu.edu.vn hoặc @st.edu.qnu.vn
             if (str_contains($email, '@st.qnu.edu.vn')) {
                 $determined_role = 1; 
             } else {
@@ -135,14 +117,27 @@ try {
 
 exit;
         }
-        
+$_SESSION['id'] = $user_id;
+$_SESSION['username'] = $username;
+$_SESSION['role'] = $role;
+$remember = [
+    "id" => $user_id,
+    "username" => $username,
+    "role" => $role,
+    "time" => time()
+];
 
-        // 2. Thiết lập toàn bộ $_SESSION giống hệt như hệ thống cũ của bạn
-        $_SESSION['id'] = $user_id;
-        $_SESSION['username'] = $username;
-        $_SESSION['role'] = $role;
 
-        // Trả kết quả kèm role về cho Frontend điều hướng trang
+setcookie(
+    "remember_login",
+    json_encode($remember),
+    [
+        "expires" => time() + 1800,
+        "path" => "/",
+        "httponly" => true,
+        "samesite" => "Lax"
+    ]
+);
         echo json_encode([
             'success' => true,
             'role' => $role

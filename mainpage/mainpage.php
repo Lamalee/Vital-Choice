@@ -17,8 +17,8 @@
       <nav>
         <ul>
           <li><a href="#aboutus">About Us</a></li>
+          <li><a href="../vital_wiki/wiki.php">Wiki</a></li>
           <li><a href="../login_register/login.php">Đăng nhập</a></li>
-          <li><a href="../login_register/register.php">Đăng ký</a></li>
         </ul>
       </nav>
     </header>

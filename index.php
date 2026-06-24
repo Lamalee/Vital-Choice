@@ -1,4 +1,4 @@
 <?php
-header("Location: login_register/login.php");
+header("Location: mainpage/mainpage.php");
 exit();
 ?>
